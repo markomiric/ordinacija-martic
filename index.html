@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/bulma.min.css" />
+   <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="./css/bulma.min.css" />
+    <style>
+      html, body, h1, h2, h3, h4, h5, h6 {
+        font-family: 'Raleway', sans-serif;
+      }
+    </style>
 
     <title>Ordinacija Martić</title>
   </head>
@@ -21,15 +27,6 @@
             <div class="container">
               <div class="navbar-brand is-active">
                 <a class="navbar-item" href="/index.html">Ordinacija Martić</a >
-                <a
-                  class="navbar-burger"
-                  role="button"
-                  aria-label="menu"
-                  aria-expanded="false"
-                  ><span aria-hidden="true"></span
-                  ><span aria-hidden="true"></span
-                  ><span aria-hidden="true"></span
-                ></a>
               </div>
               <div class="navbar-menu">
                 <div class="navbar-end">
@@ -42,12 +39,12 @@
           <div class="container">
             <div class="columns">
               <div class="column is-6">
-                <h1 class="title is-spaced">Vaš osmijeh je naš prioritet!</h1>
+                <h1 class="title is-spaced">Vaš osmijeh naš je prioritet!</h1>
                 <h2 class="subtitle">
                   Dugogodišnje iskustvo, te individualni pristup svakom pacijentu.
                 </h2>
                 <div class="buttons">
-                  <a class="control button is-primary" href="#">Pročitaj više</a>
+                  <a class="control button is-info" href="#">Pročitaj više</a>
                 </div>
               </div>
             </div>
@@ -81,6 +78,7 @@
             <h5 class="title is-5">Danijela Bijelić</h5>
             <p class="subtitle is-6">dr. dentalne medicine</p>
           </div>
+          <br>
           <div class="column is-4">
             <div class="level">
               <div class="level-item">
@@ -96,6 +94,7 @@
             <h5 class="title is-5">Dragan Martić</h5>
             <p class="subtitle is-6">dr. dentalne medicine</p>
           </div>
+          <br>
           <div class="column is-4">
             <div class="level">
               <div class="level-item">
@@ -127,7 +126,9 @@
         <h2 class="title">O nama</h2>
         <br />
         <div class="block">
-          <a href="#"><img src="./img/dentist-office.png" alt="" /></a>
+          <figure class="image is-3by2">
+            <img src="./img/team-no-background-fixed-size.png" alt="" />
+          </figure>
         </div>
         <p>
           Ordinacija dentalne medicine Dragan Martić dr.med.dent ima
@@ -135,7 +136,7 @@
           Surađujemo s renomiranim dentalnim laboratorijem, a nakon prvog
           besplatnog pregleda, procjenjujemo cjelokupno stanje u usnoj šupljini
           te donosimo individualni plan liječenja. Prilikom dolaska u našu
-          ordinaciju, želimo da se osjećate ugodno i opušteno , a za to će se
+          ordinaciju, želimo da se osjećate ugodno i opušteno, a za to će se
           pobrinuti naš stručni tim.
         </p>
       </div>
@@ -152,7 +153,7 @@
       <br />
       <br />
       <div class="container has-text-centered">
-        <h2 class="title">Što kažu naši klijenti?</h2>
+        <h2 class="title">Što kažu naši pacijenti?</h2>
         <br />
         <br />
         <div class="columns">
@@ -168,6 +169,7 @@
               <cite>@Krešo</cite>
             </div>
           </div>
+          <br>
           <div class="column">
             <div class="content">
               <blockquote>
@@ -181,6 +183,7 @@
               <cite>@Dunja</cite>
             </div>
           </div>
+          <br>
           <div class="column">
             <div class="content">
               <blockquote>
@@ -219,21 +222,21 @@
     </section>
 
 
-    <section class="section has-background-primary">
+    <section class="section has-background-info">
       <br>
       <br>
       <div class="container">
-        <h2 class="title has-text-centered has-text-white">Kontaktirajte nas!</h2>
+        <h2 class="title has-text-centered has-text-white">Pošaljite nam upit</h2>
         <br />
         <div class="columns is-centered">
           <div class="column is-8">
-            <form>
+            <form action="https://formspree.io/f/xpzorojb" method="POST">
               <div class="field is-grouped">
                 <div class="control is-expanded">
-                  <input class="input" type="email" placeholder="Ime" />
+                  <input class="input" type="text" placeholder="Ime" name="_name" required/>
                 </div>
                 <div class="control is-expanded">
-                  <input class="input" type="email" placeholder="Email" />
+                  <input class="input" type="email" placeholder="Email" name="_replyto" required/>
                 </div>
               </div>
               <div class="field">
@@ -242,19 +245,22 @@
                     class="textarea"
                     rows="5"
                     placeholder="Napisite nesto..."
+                    name="_content"
+                    required
                   ></textarea>
                 </div>
               </div>
+              <br>
               <div class="field">
                 <div class="control has-text-centered">
-                  <button class="button is-danger" type="submit">
+                  <button class="button is-warning" type="submit">
                     Pošalji
                   </button>
                 </div>
               </div>
               <div class="field has-text-centered">
-                <p class="has-text-white">ili nam pošaljite email</p>
-                <a href="#">ordinacija.martic@gmail.com</a>
+                <p class="has-text-white">ili nas nazovite na</p>
+                <strong class="has-text-white">01/444-444</strong>
               </div>
             </form>
           </div>
