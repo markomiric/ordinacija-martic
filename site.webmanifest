@@ -1,0 +1,20 @@
+{
+  "name": "Dental arts Bijelić & Martić",
+  "short_name": "Dental arts",
+  "icons": [
+    {
+      "src": "img/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffdd57",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}

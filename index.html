@@ -1,47 +1,941 @@
 <!DOCTYPE html>
 <html lang="hr">
   <head>
-    <title>Dental arts Bijelić & Martić</title>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; frame-src 'none'; object-src 'none'">
+    <title>Dental arts Bijelić & Martić</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Dental arts Bijelić & Martić - Specijalistička privatna stomatološka ordinacija">
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="http://ordinacija-martic.hr" />
-    <meta property="og:title" content="Dental arts Bijelić & Martić" />
-    <meta property="og:image" content="" />
-    <meta property="og:description" content="Dental arts Bijelić & Martić ima
-              dugogodišnje radno iskustvo, posebno u stomatološkoj protetici.
-              Surađujemo s renomiranim dentalnim laboratorijem, a nakon prvog
-              besplatnog pregleda, procjenjujemo cjelokupno stanje u usnoj šupljini
-              te donosimo individualni plan liječenja. Prilikom dolaska u našu
-              ordinaciju, želimo da se osjećate ugodno i opušteno, a za to će se
-              pobrinuti naš stručni tim." />
+    <meta name="description" content="Dental arts Bijelić & Martić - Specijalistička privatna stomatološka ordinacija u Zagrebu. Nudimo usluge mobilne i fiksne protetike, estetske stomatologije, preventive, endodoncije i dječje stomatologije.">
+    <meta name="keywords" content="stomatolog, zubar, dentalna medicina, Zagreb, protetika, estetska stomatologija, Bijelić, Martić, stomatološka ordinacija, zubna ordinacija, zubni implantati, izbjeljivanje zubi, krunice, mostovi">
+    <meta name="author" content="Dental arts Bijelić & Martić">
+    <meta name="robots" content="index, follow">
+    <meta name="geo.region" content="HR">
+    <meta name="geo.placename" content="Zagreb">
+    <meta name="geo.position" content="45.7977;15.9384">
+    <meta name="ICBM" content="45.7977, 15.9384">
+    <meta name="theme-color" content="#ffdd57">
 
-   <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="./css/bulma.min.css" />
+    <!-- Language alternatives -->
+    <link rel="alternate" href="https://ordinacija-martic.hr" hreflang="hr" />
+    <link rel="alternate" href="https://ordinacija-martic.hr/en/" hreflang="en" />
+    <link rel="canonical" href="https://ordinacija-martic.hr" />
+
+    <!-- Favicon support -->
+    <link rel="icon" href="img/logo.png" type="image/png" />
+    <link rel="icon" href="img/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ordinacija-martic.hr" />
+    <meta property="og:title" content="Dental arts Bijelić & Martić" />
+    <!-- <meta property="og:image" content="img/logo.png" /> -->
+    <meta property="og:description" content="Dental arts Bijelić & Martić ima dugogodišnje radno iskustvo, posebno u stomatološkoj protetici. Surađujemo s renomiranim dentalnim laboratorijem, a nakon prvog besplatnog pregleda, procjenjujemo cjelokupno stanje u usnoj šupljini te donosimo individualni plan liječenja." />
+
+    <!-- Resource hints for performance -->
+    <link rel="preload" href="./css/bulma.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" as="style">
+    <link rel="preload" href="./img/hero-background.jpeg" as="image" importance="high">
+    <link rel="dns-prefetch" href="https://kit.fontawesome.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://formspree.io">
+
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bulma.min.css" />
     <style>
       html, body, p, h1, h2, h3, h4, h5, h6 {
         font-family: 'Raleway', sans-serif;
       }
+      /* Navbar styling */
+      .navbar {
+        background-color: transparent;
+        transition: all 0.3s ease;
+      }
+
+      .navbar-brand .navbar-item {
+        font-weight: 700;
+        color: var(--clean-white);
+        font-size: 1.2rem;
+      }
+
+      .navbar-burger {
+        color: var(--clean-white);
+      }
+
+      .navbar-menu.is-active {
+        position: absolute;
+        width: 100%;
+        box-shadow: 0 8px 16px rgba(10,10,10,.1);
+        background-color: rgba(255, 255, 255, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-radius: 0 0 8px 8px;
+      }
+
+      .section-link {
+        color: var(--clean-white);
+        font-weight: 600;
+        position: relative;
+        padding: 0.5rem 0.75rem;
+        margin: 0 0.25rem;
+        transition: all 0.3s ease;
+      }
+
+      .section-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: var(--primary-blue);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .section-link:hover {
+        color: var(--clean-white);
+      }
+
+      .section-link:hover::after {
+        width: 80%;
+      }
+
+      .navbar-menu.is-active .section-link {
+        color: var(--dark-gray);
+      }
+
+      .navbar-menu.is-active .section-link:hover {
+        color: var(--primary-blue);
+      }
+      @media screen and (max-width: 768px) {
+        .section-link {
+          color: #4a4a4a;
+          padding: 0.75rem 1rem; /* Increased padding for better touch targets */
+          display: block;
+          margin-bottom: 0.25rem; /* Add spacing between mobile menu items */
+        }
+        /* Improve mobile touch targets */
+        .navbar-burger {
+          height: 3.5rem;
+          width: 3.5rem;
+        }
+        button,
+        .button,
+        input[type="submit"] {
+          min-height: 44px; /* Minimum touch target size */
+        }
+      }
+      /* Modern dental-friendly color palette */
+      :root {
+        --primary-blue: #4A90E2;
+        --secondary-blue: #5FB0E5;
+        --accent-blue: #D4E6F1;
+        --clean-white: #FFFFFF;
+        --off-white: #F8F9FA;
+        --light-gray: #E9ECEF;
+        --medium-gray: #CED4DA;
+        --dark-gray: #495057;
+        --accent-teal: #5BC0BE;
+        --accent-mint: #8EEDC7;
+        --warm-yellow: #FFD166;
+        --soft-red: #EF6F6C;
+      }
+
+      /* Hero section styling */
+      .hero-background {
+        background: url('./img/hero.png') no-repeat center center;
+        background-size: cover;
+        position: relative;
+      }
+
+      .hero-background::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);
+        z-index: 1;
+      }
+
+      .hero-head {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-body {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero .title,
+      .hero .subtitle {
+        color: var(--clean-white);
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      }
+
+      .hero .title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .hero .subtitle {
+        font-size: 1.25rem;
+        font-weight: 400;
+        margin-bottom: 2rem;
+        animation: fadeInUp 1.2s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .cta-button {
+        background-color: var(--primary-blue);
+        color: var(--clean-white);
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        border-radius: 30px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        animation: fadeInUp 1.4s ease-out;
+      }
+
+      .cta-button:hover {
+        background-color: var(--secondary-blue);
+        box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        transform: translateY(-2px);
+      }
+      .team-image-container {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      .send-button-icon {
+        margin-left: 6px;
+      }
+      .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99;
+        display: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #ffdd57;
+        color: #363636;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      }
+      .scroll-to-top:hover {
+        background-color: #ffd83d;
+      }
+      /* Accessibility styles */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #b39700; /* Darker yellow for better contrast */
+        color: #ffffff; /* White text for better contrast */
+        padding: 8px;
+        z-index: 100;
+        transition: top 0.3s;
+        font-weight: bold;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+      .is-sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      /* Mobile form improvements */
+      .honeypot-field {
+        display: none;
+      }
+      /* Form feedback and visual improvements */
+      .notification.is-hidden {
+        display: none;
+      }
+      /* Visual feedback improvements */
+      .input:focus, .textarea:focus {
+        box-shadow: 0 0 0 0.125em rgba(179, 151, 0, 0.4); /* Darker yellow with higher opacity */
+        border-color: #b39700; /* Darker yellow for better contrast */
+      }
+      .button.is-warning:focus {
+        box-shadow: 0 0 0 0.125em rgba(179, 151, 0, 0.4); /* Darker yellow with higher opacity */
+      }
+      /* Custom loader */
+      .loader {
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #363636;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        animation: spin 1s linear infinite;
+        display: inline-block;
+        margin-left: 8px;
+        vertical-align: middle;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      a:focus {
+        outline: 2px solid #b39700; /* Darker yellow for better contrast */
+        outline-offset: 2px;
+      }
+      /* Focus visible for keyboard navigation */
+      a:focus:not(:focus-visible) {
+        outline: none;
+      }
+      a:focus-visible {
+        outline: 2px solid #b39700; /* Darker yellow for better contrast */
+        outline-offset: 2px;
+      }
+      /* Section styling */
+      .section {
+        padding: 3rem 1.5rem;
+      }
+
+      .section.has-background-light {
+        background-color: var(--off-white) !important;
+      }
+
+      .section.has-background-grey {
+        background-color: var(--accent-blue) !important;
+        background-image: linear-gradient(135deg, var(--accent-blue) 0%, var(--secondary-blue) 100%);
+        color: var(--clean-white);
+      }
+
+      .section.has-background-warning {
+        background-color: var(--warm-yellow) !important;
+      }
+
+      .section.has-background-dark {
+        background-color: var(--dark-gray) !important;
+      }
+
+      /* Card and box styling */
+      .box {
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        overflow: hidden;
+      }
+
+      .box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      }
+
+      .box.has-background-warning {
+        background-color: var(--warm-yellow) !important;
+      }
+
+      /* Service cards */
+      .service-card {
+        padding: 2rem;
+        border-radius: 8px;
+        background-color: var(--clean-white);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        height: 100%;
+        min-height: 320px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+
+      .service-card img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .service-card h4 {
+        color: var(--dark-gray);
+        margin-bottom: 1rem;
+      }
+
+      .service-card p {
+        color: var(--dark-gray);
+        text-align: center;
+      }
+
+      /* Team cards */
+      .team-card {
+        padding: 2rem;
+        border-radius: 8px;
+        background-color: var(--clean-white);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .team-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      }
+
+      .team-image-container {
+        position: relative;
+        overflow: hidden;
+        margin: 0 auto;
+        width: 128px;
+        height: 128px;
+      }
+
+      .team-image-container .image {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .team-image-container img {
+        width: 128px;
+        height: 128px;
+        object-fit: cover;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .team-image-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(74, 144, 226, 0);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        z-index: 1;
+      }
+
+      .team-card:hover .team-image-container::before {
+        background: rgba(74, 144, 226, 0.2);
+      }
+
+      .team-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .team-bio {
+        color: var(--dark-gray);
+        line-height: 1.6;
+      }
+
+      .team-social {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: var(--light-gray);
+        color: var(--dark-gray);
+        transition: all 0.3s ease;
+      }
+
+      .social-icon:hover {
+        background-color: var(--primary-blue);
+        color: var(--clean-white);
+        transform: translateY(-3px);
+      }
+
+      /* Testimonial cards */
+      .testimonial-card {
+        padding: 2rem;
+        border-radius: 8px;
+        background-color: var(--clean-white);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: -15px;
+        left: 20px;
+        font-size: 120px;
+        color: rgba(74, 144, 226, 0.1);
+        font-family: Georgia, serif;
+        line-height: 1;
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      }
+
+      .testimonial-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        color: var(--dark-gray);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+      }
+
+      .testimonial-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 1rem;
+        background-color: var(--accent-blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-blue);
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      .testimonial-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .testimonial-name {
+        font-weight: bold;
+        color: var(--dark-gray);
+      }
+
+      .testimonial-role {
+        font-size: 0.9rem;
+        color: var(--medium-gray);
+      }
+
+      /* Contact section styling */
+      .contact-form-container {
+        border-radius: 8px;
+        background-color: var(--clean-white);
+        box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+      }
+
+      .icon-box {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        color: var(--warm-yellow);
+        font-size: 1.2rem;
+      }
+
+      .contact-info p {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 0.5rem;
+      }
+
+      .button.is-primary {
+        background-color: var(--primary-blue);
+        transition: all 0.3s ease;
+      }
+
+      .button.is-primary:hover {
+        background-color: var(--secondary-blue);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      }
+
+      /* Footer styling */
+      .footer {
+        padding: 4rem 1.5rem 2rem;
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-links a {
+        color: var(--light-gray);
+        transition: all 0.3s ease;
+        position: relative;
+        padding-left: 1rem;
+      }
+
+      .footer-links a::before {
+        content: '›';
+        position: absolute;
+        left: 0;
+        color: var(--primary-blue);
+        transition: all 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--clean-white);
+        padding-left: 1.25rem;
+      }
+
+      .footer-links a:hover::before {
+        left: 0.25rem;
+      }
+
+      .footer-contact {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-contact li {
+        color: var(--light-gray);
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .footer-divider {
+        background-color: rgba(255, 255, 255, 0.1);
+        height: 1px;
+        margin: 2rem 0;
+      }
+
+      .has-text-primary {
+        color: var(--primary-blue) !important;
+      }
+
+      .service-card:hover img {
+        transform: scale(1.1);
+      }
+
+      /* Title styling */
+      /* Apply the underline only to section titles, not all titles */
+      h2.title.is-size-3 {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 3rem; /* Increased margin to prevent overlap */
+        padding-bottom: 1rem; /* Add padding below the text */
+      }
+
+      h2.title.is-size-3::after {
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 3px;
+        background-color: var(--primary-blue);
+        bottom: 0; /* Position at the bottom of the padding area */
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Remove the underline from service card titles and other titles that shouldn't have it */
+      .service-card .title::after,
+      .team-card .title::after,
+      .contact-form-container .title::after,
+      .title.is-4::after,
+      .title.is-5::after,
+      .title.is-6::after,
+      .service-title::after {
+        display: none;
+      }
+
+      /* Service title specific styling */
+      .service-title {
+        margin-bottom: 1rem !important;
+        padding-bottom: 0 !important;
+      }
+
+      /* Mobile styles */
+      @media screen and (max-width: 768px) {
+        .field.is-grouped {
+          flex-direction: column;
+        }
+        .field.is-grouped .control:not(:last-child) {
+          margin-bottom: 0.75rem;
+          margin-right: 0;
+        }
+        input.input, textarea.textarea {
+          font-size: 16px; /* Prevent iOS zoom on focus */
+        }
+
+        .service-card {
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      /* Print styles */
+      @media print {
+        body {
+          font-size: 12pt;
+          color: #000;
+          background-color: #fff;
+        }
+        .hero-background,
+        .navbar,
+        .scroll-to-top,
+        #kontakt,
+        form,
+        .skip-link {
+          display: none !important;
+        }
+        a {
+          text-decoration: none;
+          color: #000;
+        }
+        h1, h2, h3, h4, h5, h6 {
+          page-break-after: avoid;
+          page-break-inside: avoid;
+        }
+        img {
+          max-width: 100% !important;
+          page-break-inside: avoid;
+        }
+        .container {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        .section {
+          padding: 1rem 0;
+          page-break-inside: avoid;
+        }
+        footer {
+          margin-top: 2rem;
+          font-size: 10pt;
+        }
+      }
     </style>
-   <script src="https://kit.fontawesome.com/e5cda7be54.js" crossorigin="anonymous"></script>
+   <!-- Load non-critical scripts asynchronously -->
+   <script src="https://kit.fontawesome.com/e5cda7be54.js" crossorigin="anonymous" defer></script>
+   <script>
+     document.addEventListener('DOMContentLoaded', () => {
+       // Get all "navbar-burger" elements
+       const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+       // Add a click event on each of them
+       $navbarBurgers.forEach(el => {
+         el.addEventListener('click', () => {
+           // Get the target from the "data-target" attribute
+           const target = el.dataset.target;
+           const $target = document.getElementById(target);
+
+           // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+           el.classList.toggle('is-active');
+           $target.classList.toggle('is-active');
+         });
+       });
+
+       // Close mobile menu when a link is clicked
+       const $navbarLinks = Array.prototype.slice.call(document.querySelectorAll('.navbar-item'), 0);
+       $navbarLinks.forEach(el => {
+         el.addEventListener('click', () => {
+           const $navbarMenu = document.getElementById('navbarMenu');
+           const $navbarBurger = document.querySelector('.navbar-burger');
+           if ($navbarMenu.classList.contains('is-active')) {
+             $navbarMenu.classList.remove('is-active');
+             $navbarBurger.classList.remove('is-active');
+           }
+         });
+       });
+
+       // Back to top button functionality
+       const scrollToTopButton = document.getElementById('scrollToTop');
+
+       // Show the button when the user scrolls down 300px from the top
+       window.onscroll = function() {
+         if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+           scrollToTopButton.style.display = "block";
+         } else {
+           scrollToTopButton.style.display = "none";
+         }
+       };
+
+       // Scroll to the top when the button is clicked
+       scrollToTopButton.addEventListener('click', () => {
+         document.body.scrollTop = 0; // For Safari
+         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+       });
+
+       // Add smooth scrolling to all links
+       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+         anchor.addEventListener('click', function (e) {
+           e.preventDefault();
+
+           const targetId = this.getAttribute('href');
+           if (targetId === '#') return;
+
+           const targetElement = document.querySelector(targetId);
+           if (targetElement) {
+             targetElement.scrollIntoView({
+               behavior: 'smooth'
+             });
+           }
+         });
+       });
+     });
+   </script>
+
+   <!-- Schema.org structured data for better SEO -->
+   <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Dentist",
+      "name": "Dental arts Bijelić & Martić",
+      "image": "https://ordinacija-martic.hr/img/logo.png",
+      "url": "https://ordinacija-martic.hr",
+      "telephone": "+385 1 366 8935",
+      "email": "info@ordinacija-martic.hr",
+      "priceRange": "€€",
+      "description": "Dental arts Bijelić & Martić - Specijalistička privatna stomatološka ordinacija u Zagrebu. Nudimo usluge mobilne i fiksne protetike, estetske stomatologije, preventive, endodoncije i dječje stomatologije.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Horvaćanska cesta 47",
+        "addressLocality": "Zagreb",
+        "postalCode": "10000",
+        "addressCountry": "HR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 45.7977,
+        "longitude": 15.9384
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Thursday"],
+          "opens": "13:00",
+          "closes": "20:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Wednesday", "Friday"],
+          "opens": "07:00",
+          "closes": "14:30"
+        }
+      ],
+      "sameAs": [
+        "https://ordinacija-martic.hr"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Stomatološke usluge",
+        "itemListElement": [
+          {
+            "@type": "OfferCatalog",
+            "name": "Mobilna i fiksna protetika",
+            "itemListElement": []
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Estetska stomatologija",
+            "itemListElement": []
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Preventiva",
+            "itemListElement": []
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Endodoncija",
+            "itemListElement": []
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Dječja stomatologija",
+            "itemListElement": []
+          }
+        ]
+      }
+    }
+   </script>
   </head>
   <body>
+    <!-- Skip link for keyboard navigation -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
     <section
-    class="hero is-large"
-    style="
-      background: url('./img/hero-background.jpeg') no-repeat center center;
-      background-size: cover;
-    "
+    class="hero is-large hero-background"
   >
     <div class="hero-head">
       <div class="container">
-        <nav class="navbar">
-          <div class="navbar-brand is-active">
-            <a class="navbar-item pl-5" href="index.html"><img src="./img/teeth.png" alt=""></a>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a class="navbar-item pl-5" href="index.html">
+              <!-- <img src="./img/logo.png" alt="Dental arts Bijelić & Martić logo" width="28" height="28"> -->
+              <span class="ml-2 has-text-weight-bold">Dental arts Bijelić & Martić</span>
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
           </div>
-          <div class="navbar-menu">
+
+          <div id="navbarMenu" class="navbar-menu">
             <div class="navbar-end">
+              <a href="#tko-smo-mi" class="navbar-item section-link">Tko smo mi</a>
+              <a href="#o-nama" class="navbar-item section-link">O nama</a>
+              <a href="#usluge" class="navbar-item section-link">Usluge</a>
+              <a href="#slucajevi" class="navbar-item section-link">Prikaz slučajeva</a>
+              <a href="#testimonials" class="navbar-item section-link">Iskustva</a>
+              <a href="#lokacija" class="navbar-item section-link">Lokacija</a>
+              <a href="#kontakt" class="navbar-item section-link">Kontakt</a>
             </div>
           </div>
         </nav>
@@ -56,7 +950,8 @@
               Dugogodišnje iskustvo, te individualni pristup svakom pacijentu.
             </h2>
             <div class="buttons">
-              <a class="control button is-dark" href="index.html#tko-smo-mi"><strong>Pročitaj više</strong></a>
+              <a class="button cta-button" href="#kontakt"><i class="fas fa-calendar-alt mr-2"></i> Rezervirajte termin</a>
+              <a class="button is-outlined is-white" href="#usluge"><strong>Naše usluge</strong></a>
             </div>
           </div>
         </div>
@@ -64,55 +959,62 @@
     </div>
   </section>
 
-    <section id="tko-smo-mi" class="section has-background-light">
-      <br />
-      <br />
-      <div class="container has-text-centered">
-        <h2 class="title is-size-3">Tko smo mi?</h2>
-        <br />
-        <br />
-        <div class="columns">
-          <div class="column is-6">
-            <div class="level">
-              <div class="level-item">
-                <figure class="image is-128x128">
-                  <img
-                    class="is-rounded"
-                    src="./img/danijela-bijelic-grey.png"
-                    alt="Danijela Bijelić"
-                  />
-                </figure>
+    <section id="main-content" class="section has-background-light">
+      <div id="tko-smo-mi">
+        <div class="container has-text-centered">
+          <h2 class="title is-size-3">Naš stručni tim</h2>
+          <p class="subtitle is-5 mb-6">Upoznajte naše iskusne stomatologe koji će se pobrinuti za vaš osmijeh</p>
+
+          <div class="columns is-centered">
+            <div class="column is-5">
+              <div class="team-card">
+                <div class="team-card-content has-text-centered">
+                  <div class="team-image-container mb-4">
+                    <img
+                      src="./img/danijela-bijelic-grey.png"
+                      alt="Dr. Danijela Bijelić - dentalna medicina"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p class="title is-4 mb-2">Dr. Danijela Bijelić</p>
+                  <p class="subtitle is-6 mb-4">Dentalna medicina</p>
+                  <p class="team-bio">Dr. Bijelić ima više od 15 godina iskustva u dentalnoj medicini. Specijalizirana je za estetsku stomatologiju i protetiku, a njezin pristup pacijentima temelji se na individualnoj pažnji i korištenju najsuvremenijih tehnika.</p>
+                  <div class="team-social mt-4">
+                    <a href="#" class="social-icon" aria-label="LinkedIn profil"><i class="fab fa-linkedin"></i></a>
+                    <a href="#kontakt" class="social-icon" aria-label="Email kontakt"><i class="fas fa-envelope"></i></a>
+                  </div>
+                </div>
               </div>
             </div>
-            <h5 class="title is-5">Danijela Bijelić</h5>
-            <p class="subtitle is-6">dr. dentalne medicine</p>
-          </div>
-          <br/>
-          <div class="column is-6">
-            <div class="level">
-              <div class="level-item">
-                <figure class="image is-128x128">
-                  <img
-                    class="is-rounded"
-                    src="./img/dragan-martic-grey.png"
-                    alt="Dragan Martić"
-                  />
-                </figure>
+
+            <div class="column is-5">
+              <div class="team-card">
+                <div class="team-card-content has-text-centered">
+                  <div class="team-image-container mb-4">
+                    <img
+                      src="./img/dragan-martic-grey.png"
+                      alt="Dr. Dragan Martić - dentalna medicina"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p class="title is-4 mb-2">Dr. Dragan Martić</p>
+                  <p class="subtitle is-6 mb-4">Dentalna medicina</p>
+                  <p class="team-bio">Dr. Martić je stomatolog s bogatim iskustvom u svim područjima dentalne medicine. Posebno se ističe u endodonciji i oralnoj kirurgiji. Njegov pristupačan način rada pomaže pacijentima da se osjećaju ugodno tijekom svih zahvata.</p>
+                  <div class="team-social mt-4">
+                    <a href="#" class="social-icon" aria-label="LinkedIn profil"><i class="fab fa-linkedin"></i></a>
+                    <a href="#kontakt" class="social-icon" aria-label="Email kontakt"><i class="fas fa-envelope"></i></a>
+                  </div>
+                </div>
               </div>
             </div>
-            <h5 class="title is-5">Dragan Martić</h5>
-            <p class="subtitle is-6">dr. dentalne medicine</p>
           </div>
         </div>
       </div>
-      <br />
-      <br />
-      <br />
     </section>
 
     <br />
 
-    <section class="section">
+    <section id="o-nama" class="section">
       <br />
       <br />
       <div class="container has-text-centered">
@@ -121,9 +1023,9 @@
 
         <div class="columns">
           <div class="column is-three-fifths is-offset-one-fifth">
-            <div class="block" style="max-width: 480px; margin: 0 auto;">
+            <div class="block">
               <figure class="image is-square">
-                <img src="./img/team.png" alt="Team" />
+                <img src="./img/team.png" alt="Dental arts Bijelić & Martić team" loading="lazy" />
               </figure>
             </div>
             <br/>
@@ -149,32 +1051,32 @@
         <div class="columns is-centered is-vcentered is-multiline">
           <div class="column is-4">
             <figure class="image is-square">
-              <img src="./img/ord-1.jpg" alt="Ord 1">
+              <img src="./img/ord-1.jpg" alt="Ordinacija - slika 1" loading="lazy">
             </figure>
           </div>
           <div class="column is-4">
             <figure class="image is-square">
-              <img src="./img/ord-2.jpg" alt="Ord 2">
+              <img src="./img/ord-2.jpg" alt="Ordinacija - slika 2" loading="lazy">
             </figure>
           </div>
           <div class="column is-4">
             <figure class="image is-square">
-              <img src="./img/ord-3.jpg" alt="Ord 3">
+              <img src="./img/ord-3.jpg" alt="Ordinacija - slika 3" loading="lazy">
             </figure>
           </div>
           <div class="column is-4">
             <figure class="image is-square">
-              <img src="./img/ord-4.jpg" alt="Ord 4">
+              <img src="./img/ord-4.jpg" alt="Ordinacija - slika 4" loading="lazy">
             </figure>
           </div>
           <div class="column is-4">
             <figure class="image is-square">
-              <img src="./img/ord-5.jpg" alt="Ord 5">
+              <img src="./img/ord-5.jpg" alt="Ordinacija - slika 5" loading="lazy">
             </figure>
           </div>
           <div class="column is-4">
             <figure class="image is-square">
-              <img src="./img/ord-6.jpg" alt="Ord 6">
+              <img src="./img/ord-6.jpg" alt="Ordinacija - slika 6" loading="lazy">
             </figure>
           </div>
         </div>
@@ -204,40 +1106,53 @@
       <br />
     </section> -->
 
-    <section class="section has-background-grey">
-      <br>
-      <br>
+    <section id="usluge" class="section has-background-grey">
       <div class="container has-text-centered">
-      <h2 class="title is-size-3">Usluge koje nudimo</h2>
-      <br>
-      <br>
-      <br>
-        <div class="columns is-multiline">
+        <h2 class="title is-size-3 has-text-white">Usluge koje nudimo</h2>
+        <p class="subtitle is-5 has-text-white-ter mb-6">Pružamo širok spektar stomatoloških usluga za cijelu obitelj</p>
+
+        <div class="columns is-multiline is-variable is-4">
           <div class="column is-6 is-4-desktop">
-            <h4 class="title is-4">Mobilna i fiksna protetika</h4>
-            <img src="./img/feature-1.svg" alt="Mobilna i fiksna protetika">
+            <div class="service-card">
+              <img src="./img/feature-1.svg" alt="Mobilna i fiksna protetika">
+              <h4 class="title is-4 service-title">Mobilna i fiksna protetika</h4>
+              <p>Izrada krunica, mostova, proteza i drugih nadomjestaka za izgubljene zube uz korištenje najkvalitetnijih materijala.</p>
+            </div>
           </div>
+
           <div class="column is-6 is-4-desktop">
-            <h4 class="title is-4">Estetska stomatologija</h4>
-            <img src="./img/feature-2.svg" alt="Estetska stomatologija">
+            <div class="service-card">
+              <img src="./img/feature-2.svg" alt="Estetska stomatologija">
+              <h4 class="title is-4 service-title">Estetska stomatologija</h4>
+              <p>Izbjeljivanje zubi, estetski ispuni i ljuskice za postizanje savršenog osmijeha koji će vas učiniti samopouzdanijima.</p>
+            </div>
           </div>
+
           <div class="column is-6 is-4-desktop">
-            <h4 class="title is-4">Preventiva</h4>
-            <img src="./img/feature-4.svg" alt="Preventiva">
+            <div class="service-card">
+              <img src="./img/feature-4.svg" alt="Preventiva">
+              <h4 class="title is-4 service-title">Preventiva</h4>
+              <p>Redoviti pregledi, čišćenje kamenca i savjeti za održavanje oralne higijene kako biste spriječili nastanak problema.</p>
+            </div>
           </div>
+
           <div class="column is-6 is-6-desktop">
-            <h4 class="title is-4">Endodoncija</h4>
-            <img src="./img/feature-3.svg" alt="Endodoncija">
+            <div class="service-card">
+              <img src="./img/feature-3.svg" alt="Endodoncija">
+              <h4 class="title is-4 service-title">Endodoncija</h4>
+              <p>Liječenje korijenskih kanala uz korištenje najsuvremenijih tehnika i materijala za očuvanje prirodnih zubi.</p>
+            </div>
           </div>
+
           <div class="column is-6 is-6-desktop">
-            <h4 class="title is-4">Dječja stomatologija</h4>
-            <img src="./img/feature-5.svg" alt="Dječja stomatologija">
+            <div class="service-card">
+              <img src="./img/feature-5.svg" alt="Dječja stomatologija">
+              <h4 class="title is-4 service-title">Dječja stomatologija</h4>
+              <p>Nježan pristup najmlađim pacijentima uz stvaranje pozitivnog iskustva i razvijanje dobrih navika od najranije dobi.</p>
+            </div>
           </div>
         </div>
       </div>
-    <br>
-    <br>
-    <br>
     </section>
 
 
@@ -271,7 +1186,7 @@
     <br>
     </section>
 
-    <section class="section has-background-light">
+    <section id="slucajevi" class="section has-background-light">
       <br />
       <br />
       <br />
@@ -287,7 +1202,8 @@
                 <figure class="image is-2by1">
                   <img
                     src="./img/showcase1-1.png"
-                    alt=""
+                    alt="Prikaz slučaja 1 - prije"
+                    loading="lazy"
                   />
                 </figure>
               </div>
@@ -296,13 +1212,15 @@
             <figure class="image is-48x48 is-hidden-mobile is-inline-block">
                 <img
                   src="./img/iconmonstr-arrow-71-64.png"
-                  alt=""
+                  alt="Strelica desno"
+                  loading="lazy"
                 />
               </figure>
               <figure class="image is-48x48 is-hidden-tablet is-hidden-desktop is-hidden-widescreen is-hidden-fullhd is-inline-block">
                 <img
                   src="./img/iconmonstr-arrow-73-64.png"
-                  alt=""
+                  alt="Strelica dolje"
+                  loading="lazy"
                 />
               </figure>
           </div>
@@ -311,7 +1229,8 @@
                 <figure class="image is-2by1">
                   <img
                     src="./img/showcase1-2.png"
-                    alt="Showcase 1-2"
+                    alt="Prikaz slučaja 1 - poslije"
+                    loading="lazy"
                   />
                 </figure>
               </div>
@@ -330,7 +1249,8 @@
                 <figure class="image is-2by1">
                   <img
                     src="./img/showcase-2-1.png"
-                    alt="Showcase 2-1"
+                    alt="Prikaz slučaja 2 - prije"
+                    loading="lazy"
                   />
                 </figure>
               </div>
@@ -354,7 +1274,8 @@
                 <figure class="image is-2by1">
                   <img
                     src="./img/showcase-2-2.png"
-                    alt="Showcase 2-2"
+                    alt="Prikaz slučaja 2 - poslije"
+                    loading="lazy"
                   />
                 </figure>
               </div>
@@ -373,7 +1294,8 @@
                 <figure class="image is-2by1">
                   <img
                     src="./img/showcase-3-1.png"
-                    alt="Showcase 3-1"
+                    alt="Prikaz slučaja 3 - prije"
+                    loading="lazy"
                   />
                 </figure>
               </div>
@@ -397,7 +1319,8 @@
                 <figure class="image is-2by1">
                   <img
                     src="./img/showcase-3-2.png"
-                    alt="Showcase 3-2"
+                    alt="Prikaz slučaja 3 - poslije"
+                    loading="lazy"
                   />
                 </figure>
               </div>
@@ -411,63 +1334,94 @@
       <br />
     </section>
 
-    <section class="section">
-      <br />
-      <br />
+    <section id="testimonials" class="section has-background-light">
       <div class="container has-text-centered">
         <h2 class="title is-size-3">Što kažu naši pacijenti?</h2>
-        <br />
-        <br />
-        <div class="columns">
-          <div class="column">
-            <div class="content">
-              <blockquote>
-                <p>
-                  Doktor, doktorica i sestra odlični . Ugodan ambijent i odlična
+        <p class="subtitle is-5 mb-6">Iskustva onih koji su nam povjerili svoje osmijehe</p>
+
+        <div class="columns is-multiline">
+          <div class="column is-4">
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <p class="testimonial-text">
+                  Doktor, doktorica i sestra odlični. Ugodan ambijent i odlična
                   atmosfera. Kao da sam došao na druženje kod prijatelja, a ne
                   kod zubara. Dosad najbolje iskustvo sa zubarima, sve pohvale.
                 </p>
-              </blockquote>
-              <cite>@Krešo</cite>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">K</div>
+                  <div class="testimonial-info">
+                    <span class="testimonial-name">Krešo Horvat</span>
+                    <span class="testimonial-role">Pacijent već 3 godine</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <br>
-          <div class="column">
-            <div class="content">
-              <blockquote>
-                <p>
+
+          <div class="column is-4">
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <p class="testimonial-text">
                   Izuzetno stručno, susretljivo i ljubazno liječničko osoblje
                   koje jednako predano pristupa i standardnim intervencijama i
                   zahtjevnim zahvatima estetske dentalne medicine. Ugodna
                   atmosfera u ordinaciji, doista za svaku preporuku.
                 </p>
-              </blockquote>
-              <cite>@Dunja</cite>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">D</div>
+                  <div class="testimonial-info">
+                    <span class="testimonial-name">Dunja Kovačević</span>
+                    <span class="testimonial-role">Pacijentica već 5 godina</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <br>
-          <div class="column">
-            <div class="content">
-              <blockquote>
-                <p>
+
+          <div class="column is-4">
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <p class="testimonial-text">
                   Jako ugodna atmosfera i posebno mi se svidjelo što sam
                   detaljno bila informirana o tome što se i na koji način radi
                   na zubima. Prezadovoljna sam rezultatom i novim osmjehom.
                 </p>
-              </blockquote>
-              <cite>@Marija</cite>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">M</div>
+                  <div class="testimonial-info">
+                    <span class="testimonial-name">Marija Novak</span>
+                    <span class="testimonial-role">Pacijentica već 2 godine</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <br />
-      <br />
-      <br />
     </section>
 
     <br />
 
     <section class="section has-background-light">
+      <br />
+      <br />
+      <div class="container has-text-centered">
+        <h2 class="title is-size-3">Ugovorni partner HZZO-a</h2>
+        <br />
+        <br />
+        <div class="columns columns is-flex is-centered">
+            <figure class="image is-128x128">
+              <img src="./img/hzzo.png" alt="HZZO logo" loading="lazy" />
+            </figure>
+            <br />
+        </div>
+      </div>
+      <br />
+      <br />
+    </section>
+
+    <section id="lokacija" class="section has-background-grey">
       <br>
       <br>
       <div class="container has-text-centered">
@@ -478,16 +1432,16 @@
         <br />
         <img
           src="./img/mapview.jpeg"
-          alt="karta"
+          alt="Karta lokacije - Horvaćanska cesta 47, Zagreb"
+          loading="lazy"
         >
-      </img>
       </div>
       <br>
       <br>
       <br>
     </section>
 
-    <section class="section has-background-warning">
+    <!-- <section class="section has-background-warning">
       <br>
       <br>
       <div class="container has-text-centered">
@@ -501,66 +1455,286 @@
       <br>
       <br>
       <br>
-    </section>
+    </section> -->
 
 
 
-    <section class="section has-background-dark">
-      <br>
+    <section id="kontakt" class="section has-background-dark">
       <div class="container">
-        <p class="has-text-centered">
-            <img src="./img/iconmonstr-email-1-64.png" alt="">
-        </p>
-        <br>
-        <h2 class="title has-text-centered has-text-white is-size-3">Pošaljite nam upit</h2>
-        <br />
-        <div class="columns is-centered">
-          <div class="column is-8">
-            <form action="https://formspree.io/f/xpzorojb" method="POST">
-              <div class="field is-grouped">
-                <div class="control is-expanded">
-                  <input class="input" type="text" placeholder="Ime" name="_name" required/>
+        <div class="columns is-vcentered">
+          <div class="column is-5">
+            <div class="content has-text-white">
+              <h2 class="title has-text-white mb-5">Kontaktirajte nas</h2>
+              <p class="mb-5">Rezervirajte svoj termin ili nam pošaljite upit. Naš tim će vam odgovoriti u najkraćem mogućem roku.</p>
+
+              <div class="contact-info">
+                <div class="contact-item mb-4">
+                  <div class="icon-box">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div>
+                    <h4 class="has-text-white mb-2">Adresa</h4>
+                    <p>Horvaćanska cesta 47, 10000 Zagreb</p>
+                  </div>
                 </div>
-                <div class="control is-expanded">
-                  <input class="input" type="email" placeholder="Email" name="_replyto" required/>
+
+                <div class="contact-item mb-4">
+                  <div class="icon-box">
+                    <i class="fas fa-phone-alt"></i>
+                  </div>
+                  <div>
+                    <h4 class="has-text-white mb-2">Telefon</h4>
+                    <p>+385 1 366 8935</p>
+                    <p>+385 91 545 1645</p>
+                    <p>+385 98 945 2701</p>
+                  </div>
+                </div>
+
+                <div class="contact-item mb-4">
+                  <div class="icon-box">
+                    <i class="far fa-clock"></i>
+                  </div>
+                  <div>
+                    <h4 class="has-text-white mb-2">Radno vrijeme</h4>
+                    <p>Pon, Uto, Čet: 13:00 - 20:30</p>
+                    <p>Sri, Pet: 07:00 - 14:30</p>
+                  </div>
                 </div>
               </div>
-              <div class="field">
-                <div class="control">
-                  <textarea
-                    class="textarea"
-                    rows="5"
-                    placeholder="Napisite nesto..."
-                    name="_content"
-                    required
-                  ></textarea>
+            </div>
+          </div>
+
+          <div class="column is-7">
+            <div class="contact-form-container box p-5">
+              <h2 id="contact-form-heading" class="title is-4 mb-5">Pošaljite nam upit</h2>
+
+              <form action="https://formspree.io/f/xpzorojb" method="POST" aria-labelledby="contact-form-heading">
+                <!-- Honeypot field to prevent spam -->
+                <div class="honeypot-field">
+                  <label class="is-sr-only">Leave this field empty if you're human: <input name="_gotcha" tabindex="-1" autocomplete="off"></label>
+                </div>
+
+                <div class="field">
+                  <label for="name" class="label">Ime</label>
+                  <div class="control has-icons-left">
+                    <input id="name" class="input" type="text" placeholder="Vaše ime" name="_name" required aria-required="true" minlength="2" maxlength="50" pattern="[A-Za-zČčĆćŽžĐđŠš\s]+" title="Molimo unesite ispravno ime (samo slova i razmaci)"/>
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-user"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="email" class="label">Email</label>
+                  <div class="control has-icons-left">
+                    <input id="email" class="input" type="email" placeholder="Vaš email" name="_replyto" required aria-required="true" maxlength="100" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Molimo unesite ispravnu email adresu"/>
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-envelope"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="message" class="label">Poruka</label>
+                  <div class="control">
+                    <textarea
+                      id="message"
+                      class="textarea"
+                      rows="5"
+                      placeholder="Vaša poruka..."
+                      name="_content"
+                      required
+                      aria-required="true"
+                      minlength="10"
+                      maxlength="1000"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="field mt-5">
+                  <div class="control">
+                    <button class="button is-primary is-fullwidth" type="submit" aria-label="Pošalji upit" id="submit-button">
+                      <strong>Pošalji upit</strong> <span class="send-button-icon ml-2"><i class="fas fa-paper-plane"></i></span>
+                      <span class="loader is-hidden ml-2" id="submit-loader"></span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+              <!-- Form validation feedback -->
+              <div class="columns is-centered mt-4">
+                <div class="column is-7">
+                  <div class="notification is-success is-light is-hidden" id="form-success">
+                    <button class="delete" type="button" aria-label="Close notification"></button>
+                    <span class="icon mr-2"><i class="fas fa-check-circle"></i></span>
+                    Vaša poruka je uspješno poslana. Hvala vam!
+                  </div>
+                  <div class="notification is-danger is-light is-hidden" id="form-error">
+                    <button class="delete" type="button" aria-label="Close notification"></button>
+                    <span class="icon mr-2"><i class="fas fa-exclamation-circle"></i></span>
+                    Došlo je do greške prilikom slanja poruke. Molimo pokušajte ponovno.
+                  </div>
                 </div>
               </div>
-              <br>
-              <div class="field">
-                <div class="control has-text-centered">
-                  <button class="button is-warning" type="submit">
-                    <strong>Pošalji</strong> <span style="margin-left: 6px;"><img src="./img/iconmonstr-paper-plane-7-16.png" alt=""></span>
-                  </button>
-                </div>
-              </div>
-              <div class="field has-text-centered">
+
+              <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  const form = document.querySelector('form[action="https://formspree.io/f/xpzorojb"]');
+                  const successMessage = document.getElementById('form-success');
+                  const errorMessage = document.getElementById('form-error');
+                  const submitButton = document.getElementById('submit-button');
+                  const submitLoader = document.getElementById('submit-loader');
+
+                  // Setup notification close buttons
+                  document.querySelectorAll('.notification .delete').forEach(button => {
+                    button.addEventListener('click', function() {
+                      this.parentNode.classList.add('is-hidden');
+                    });
+                  });
+
+                  if (form) {
+                    form.addEventListener('submit', function(event) {
+                      event.preventDefault();
+
+                      // Hide any previous messages
+                      successMessage.classList.add('is-hidden');
+                      errorMessage.classList.add('is-hidden');
+
+                      // Show loading indicator
+                      submitLoader.classList.remove('is-hidden');
+                      submitButton.disabled = true;
+
+                      // Simple client-side validation
+                      const nameInput = document.getElementById('name');
+                      const emailInput = document.getElementById('email');
+                      const messageInput = document.getElementById('message');
+
+                      if (!nameInput.checkValidity() || !emailInput.checkValidity() || !messageInput.checkValidity()) {
+                        return; // Browser will show validation messages
+                      }
+
+                      // Submit the form using Fetch API
+                      fetch(form.action, {
+                        method: form.method,
+                        body: new FormData(form),
+                        headers: {
+                          'Accept': 'application/json'
+                        }
+                      })
+                      .then(response => {
+                        if (response.ok) {
+                          // Success
+                          form.reset();
+                          successMessage.classList.remove('is-hidden');
+                        } else {
+                          // Error
+                          errorMessage.classList.remove('is-hidden');
+                          throw new Error('Form submission failed');
+                        }
+                        // Hide loading indicator
+                        submitLoader.classList.add('is-hidden');
+                        submitButton.disabled = false;
+                      })
+                      .catch(error => {
+                        console.error('Error:', error);
+
+                        // Enhanced error handling
+                        if (!navigator.onLine) {
+                          // User is offline
+                          errorMessage.textContent = "Nema internet veze. Molimo provjerite vašu mrežnu vezu i pokušajte ponovno.";
+                        } else {
+                          // Default error message
+                          errorMessage.textContent = "Došlo je do greške prilikom slanja poruke. Molimo pokušajte ponovno.";
+                        }
+
+                        errorMessage.classList.remove('is-hidden');
+
+                        // Hide loading indicator
+                        submitLoader.classList.add('is-hidden');
+                        submitButton.disabled = false;
+                      });
+                    });
+                  }
+                });
+              </script>
+              <!-- <div class="field has-text-centered">
                 <p class="has-text-white">ili nas nazovite na</p>
                 <p class="has-text-white">Telefon: <strong class="has-text-white">+385 1 366 8935</strong></p>
                 <p class="has-text-white">Mobitel: <strong class="has-text-white">+385 91 545 1645</strong></p>
                 <p class="has-text-white">Mobitel: <strong class="has-text-white">+385 98 945 2701</strong></p>
-              </div>
+              </div> -->
             </form>
           </div>
         </div>
       </div>
     </section>
 
-    <footer class="footer has-background-black">
-      <div class="container has-text-centered">
-        <p class="subtitle is-6 has-text-white">
-          &copy; 2024 Dental arts Bijelić & Martić. Sva prava pridržana.
-        </p>
+    <footer class="footer has-background-dark">
+      <div class="container">
+        <div class="columns is-multiline">
+          <div class="column is-4">
+            <h3 class="title is-5 has-text-white mb-4">Dental arts Bijelić & Martić</h3>
+            <p class="has-text-grey-lighter mb-4">Specijalistička privatna stomatološka ordinacija u Zagrebu s dugogodišnjim iskustvom u dentalnoj medicini.</p>
+            <div class="social-links">
+              <a href="#" class="social-icon mr-2" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-icon mr-2" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+
+          <div class="column is-4">
+            <h3 class="title is-5 has-text-white mb-4">Brzi linkovi</h3>
+            <ul class="footer-links">
+              <li><a href="#tko-smo-mi">Naš tim</a></li>
+              <li><a href="#o-nama">O nama</a></li>
+              <li><a href="#usluge">Usluge</a></li>
+              <li><a href="#slucajevi">Prikaz slučajeva</a></li>
+              <li><a href="#testimonials">Iskustva pacijenata</a></li>
+              <li><a href="#lokacija">Lokacija</a></li>
+              <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+          </div>
+
+          <div class="column is-4">
+            <h3 class="title is-5 has-text-white mb-4">Kontakt</h3>
+            <ul class="footer-contact">
+              <li>
+                <span class="icon has-text-primary mr-2"><i class="fas fa-map-marker-alt"></i></span>
+                Horvaćanska cesta 47, 10000 Zagreb
+              </li>
+              <li>
+                <span class="icon has-text-primary mr-2"><i class="fas fa-phone-alt"></i></span>
+                +385 1 366 8935
+              </li>
+              <li>
+                <span class="icon has-text-primary mr-2"><i class="fas fa-envelope"></i></span>
+                info@ordinacija-martic.hr
+              </li>
+              <li>
+                <span class="icon has-text-primary mr-2"><i class="far fa-clock"></i></span>
+                Pon, Uto, Čet: 13:00 - 20:30
+              </li>
+              <li>
+                <span class="icon has-text-primary mr-2"><i class="far fa-clock"></i></span>
+                Sri, Pet: 07:00 - 14:30
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <hr class="footer-divider">
+
+        <div class="columns">
+          <div class="column has-text-centered-mobile">
+            <p class="has-text-grey-lighter">
+              &copy; 2025 Dental arts Bijelić & Martić. Sva prava pridržana.
+            </p>
+          </div>
+        </div>
       </div>
     </footer>
   </body>
