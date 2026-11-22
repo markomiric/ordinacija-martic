@@ -1,5 +1,7 @@
 # GitHub Pages builds the repository root with Jekyll. Keep the agent guides
-# unpublished; Jekyll already skips dot-folders such as .claude and .agents.
+# and repository docs unpublished; Jekyll already skips dot-folders such as
+# .claude and .agents.
 exclude:
   - AGENTS.md
   - CLAUDE.md
+  - css/README.md
