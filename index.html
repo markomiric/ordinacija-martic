@@ -1771,19 +1771,23 @@
 
       /* ---------- Contact (.surface-dark) ---------- */
       /* One flat list on the dark band: icon, then the value in regular
-         white. The labels stay for screen readers only. */
+         white. The labels stay for screen readers only. Wider screens put
+         the list on the left and the actions on the right, both starting
+         from the same top rule. */
       .contact-panel {
         max-width: 960px;
         margin: 0 auto;
-      }
-      .contact-info {
         display: grid;
-        gap: 0 3rem;
+        gap: 2rem 4rem;
       }
       @media screen and (min-width: 769px) {
-        .contact-info {
-          grid-template-columns: 1fr 1fr;
+        .contact-panel {
+          grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+          align-items: start;
         }
+      }
+      .contact-info {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
       }
       .contact-item {
         display: flex;
@@ -1829,19 +1833,17 @@
          are secondary. */
       .contact-actions {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        flex-direction: column;
         gap: 0.75rem;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.14);
+      }
+      @media screen and (min-width: 769px) {
+        .contact-actions {
+          padding-top: 1rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.14);
+        }
       }
       .contact-actions .button {
         gap: 0.5rem;
-      }
-      @media screen and (max-width: 768px) {
-        .contact-actions {
-          flex-direction: column;
-        }
       }
 
       /* ---------- Floating actions ---------- */
