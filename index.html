@@ -463,10 +463,10 @@
       /* ---------- Reveal-on-scroll ---------- */
       .reveal {
         opacity: 0;
-        transform: translateY(26px);
+        transform: translateY(16px);
         transition:
-          opacity 0.7s var(--ease),
-          transform 0.7s var(--ease);
+          opacity 0.4s var(--ease),
+          transform 0.4s var(--ease);
         will-change: opacity, transform;
       }
       .reveal.is-visible {
@@ -474,16 +474,16 @@
         transform: none;
       }
       .reveal-delay-1 {
-        transition-delay: 0.08s;
+        transition-delay: 0.04s;
       }
       .reveal-delay-2 {
-        transition-delay: 0.16s;
+        transition-delay: 0.08s;
       }
       .reveal-delay-3 {
-        transition-delay: 0.24s;
+        transition-delay: 0.12s;
       }
       .reveal-delay-4 {
-        transition-delay: 0.32s;
+        transition-delay: 0.16s;
       }
 
       /* ---------- Sticky header ---------- */
@@ -520,6 +520,7 @@
         font-weight: 600;
         font-size: 1.15rem;
         color: #fff;
+        white-space: nowrap;
       }
       .brand .brand-dot {
         width: 12px;
@@ -612,8 +613,12 @@
         background: transparent;
       }
 
-      /* Mobile menu */
-      @media screen and (max-width: 1023px) {
+      /* Mobile menu: up to Bulma's $widescreen, because the brand, seven
+         links and the CTA do not fit on one line below 1216px. */
+      @media screen and (max-width: 1215px) {
+        .navbar-burger {
+          display: block;
+        }
         .site-nav {
           position: absolute;
           top: var(--nav-h);
@@ -628,17 +633,27 @@
           padding: 0.75rem;
           box-shadow: 0 16px 30px rgba(16, 48, 59, 0.14);
           border-radius: 0 0 var(--r) var(--r);
+          /* Short landscape screens: scroll inside the menu so the last
+             links and the CTA stay reachable. */
+          max-height: calc(100dvh - var(--nav-h));
+          overflow-y: auto;
           transform: translateY(-8px);
           opacity: 0;
           pointer-events: none;
+          /* Hidden menu links must leave the tab order; visibility flips
+             after the fade-out finishes. */
+          visibility: hidden;
           transition:
             opacity 0.25s var(--ease),
-            transform 0.25s var(--ease);
+            transform 0.25s var(--ease),
+            visibility 0s linear 0.25s;
         }
         .site-nav.is-open {
           transform: none;
           opacity: 1;
           pointer-events: auto;
+          visibility: visible;
+          transition-delay: 0s;
         }
         .site-nav a.section-link {
           color: var(--ink-soft) !important;
@@ -657,7 +672,7 @@
           text-align: center;
         }
       }
-      @media screen and (min-width: 1024px) {
+      @media screen and (min-width: 1216px) {
         .navbar-burger {
           display: none;
         }
@@ -2073,6 +2088,32 @@
         font-size: 1.125rem;
         font-weight: 700;
         line-height: 1.5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        list-style: none;
+      }
+      .patient-questions summary::-webkit-details-marker {
+        display: none;
+      }
+      /* Chevron on the right; points down when closed, up when open. */
+      .patient-questions summary::after {
+        content: '';
+        flex: none;
+        width: 0.6rem;
+        height: 0.6rem;
+        margin-right: 0.35rem;
+        border-right: 2px solid var(--teal-deep);
+        border-bottom: 2px solid var(--teal-deep);
+        transform: translateY(-25%) rotate(45deg);
+        transition: transform 0.2s var(--ease);
+      }
+      .patient-questions details[open] > summary::after {
+        transform: translateY(25%) rotate(-135deg);
+      }
+      .patient-questions summary:hover {
+        color: var(--teal-deep);
       }
       .patient-questions summary:focus-visible {
         outline: 3px solid var(--teal-deep);
@@ -2162,12 +2203,35 @@
             {rootMargin: '0px 0px -8% 0px', threshold: 0.08},
           )
           revealTargets.forEach(el => io.observe(el))
+
+          // An in-page link jumps straight to a section: reveal it now so the
+          // visitor never lands on an empty band while the fade catches up.
+          const revealSection = hash => {
+            const target =
+              hash.length > 1 && document.getElementById(hash.slice(1))
+            const section = target && target.closest('section')
+            if (!section) return
+            section.querySelectorAll('.reveal').forEach(el => {
+              // Show it without the fade, then restore the card's own
+              // hover transitions once the style change has been applied.
+              el.style.transition = 'none'
+              el.classList.add('is-visible')
+              void el.offsetWidth
+              el.style.transition = ''
+              io.unobserve(el)
+            })
+          }
+          document.addEventListener('click', e => {
+            const a = e.target.closest('a[href^="#"]')
+            if (a) revealSection(a.getAttribute('href'))
+          })
+          revealSection(location.hash)
         }
 
         // --- Count-up stats (About) ---
-        const counters = document.querySelectorAll(
-          '.about-stat-number, .trust-badge strong',
-        )
+        // Hero trust badges stay static: they are visible on load, so a
+        // count-up would show wrong values ("1+ godina") in the first screen.
+        const counters = document.querySelectorAll('.about-stat-number')
         const runCounter = el => {
           const raw = el.textContent.trim()
           const m = raw.match(/^(\d+)(.*)$/)
@@ -2524,7 +2588,7 @@
             Pružamo širok spektar stomatoloških usluga za cijelu obitelj
           </p>
 
-          <div class="columns is-multiline is-variable is-4">
+          <div class="columns is-multiline is-centered is-variable is-4">
             <div class="column is-6 is-4-desktop">
               <div class="service-card">
                 <img
