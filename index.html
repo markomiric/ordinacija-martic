@@ -780,6 +780,39 @@
         .navbar-burger {
           display: none;
         }
+        /* One booking action at a time: the header CTA shows only after the
+           hero buttons scroll away, and steps aside at the contact buttons.
+           Desktop has no floating Call button. */
+        html.cta-managed .nav-cta {
+          opacity: 0;
+          visibility: hidden;
+          transition:
+            opacity 0.2s var(--ease),
+            transform 0.2s var(--ease),
+            box-shadow 0.25s var(--ease),
+            visibility 0s linear 0.2s;
+        }
+        html.cta-managed.has-action-bar:not(.contact-in-view) .nav-cta {
+          opacity: 1;
+          visibility: visible;
+          transition-delay: 0s;
+        }
+        /* html prefix: the base .call-fab/.scroll-to-top rules come later. */
+        html .call-fab {
+          display: none;
+        }
+        html .scroll-to-top {
+          bottom: 24px;
+        }
+      }
+      /* Tablets: the floating Call button waits for the hero buttons to
+         scroll away, like the phone bar. */
+      @media screen and (min-width: 769px) and (max-width: 1215px) {
+        html.cta-managed:not(.has-action-bar) .call-fab {
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+        }
       }
 
       /* ---------- Hero ---------- */
@@ -2285,8 +2318,11 @@
         window.addEventListener('scroll', onScroll, {passive: true})
         onScroll()
 
-        // Phone action bar appears once the hero buttons have scrolled away.
+        // Booking shortcuts (phone bar, floating Call, header CTA) appear
+        // once the hero buttons have scrolled away. 'cta-managed' lets the
+        // CSS hide them only when this script runs.
         const heroButtons = document.querySelector('.hero .buttons')
+        document.documentElement.classList.add('cta-managed')
         if (heroButtons && 'IntersectionObserver' in window) {
           new IntersectionObserver(([entry]) => {
             document.documentElement.classList.toggle(
