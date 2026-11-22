@@ -204,12 +204,6 @@
         --bg: #f6f9f8; /* page background */
         --muted: #5c6b70; /* secondary text (AA on white) */
         --line: #e4ebea; /* hairlines */
-        --line-strong: #7d8e93; /* form-field borders (3:1 on white) */
-        /* Status: AA as text on white and on their soft fills */
-        --success: #17784f;
-        --success-soft: #e8f6ef;
-        --danger: #b8402a;
-        --danger-soft: #fcece8;
 
         /* Brand fills. Flat, so text contrast is the same edge to edge:
            white on teal-deep 6.1:1, ink on coral 5.4:1. */
@@ -1787,8 +1781,8 @@
       }
 
       /* ---------- Contact (.surface-dark) ---------- */
-      /* One flat list on the dark band: icon, small muted label, then the
-         value in regular white. No boxes inside boxes. */
+      /* One flat list on the dark band: icon, then the value in regular
+         white. The labels stay for screen readers only. */
       .contact-panel {
         max-width: 960px;
         margin: 0 auto;
@@ -1806,7 +1800,7 @@
         display: flex;
         align-items: flex-start;
         gap: 1rem;
-        padding: 1.25rem 0;
+        padding: 1rem 0;
         border-top: 1px solid rgba(255, 255, 255, 0.14);
         overflow-wrap: anywhere;
       }
@@ -1817,15 +1811,6 @@
         color: var(--on-dark-muted);
         font-size: var(--fs-lg);
         flex: none;
-      }
-      .contact-item h3 {
-        color: var(--on-dark-muted);
-        margin-bottom: 0.35rem;
-        font-family: var(--font-sans);
-        font-size: var(--fs-xs);
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
       }
       .contact-info p {
         color: var(--on-dark);
@@ -1839,10 +1824,11 @@
         color: var(--on-dark);
         text-decoration: underline;
         text-underline-offset: 3px;
-        text-decoration-color: rgba(255, 255, 255, 0.35);
+        text-decoration-color: transparent;
         transition: text-decoration-color 0.2s var(--ease);
       }
-      .contact-info a:hover {
+      .contact-info a:hover,
+      .contact-info a:focus-visible {
         color: var(--on-dark);
         text-decoration-color: currentColor;
       }
@@ -3623,7 +3609,7 @@
               <div class="contact-item">
                 <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                 <div>
-                  <h3>Adresa</h3>
+                  <h3 class="is-sr-only">Adresa</h3>
                   <p>
                     <a
                       href="https://www.google.com/maps/dir/?api=1&amp;destination=Horva%C4%87anska+cesta+47%2C+10000+Zagreb"
@@ -3638,7 +3624,7 @@
               <div class="contact-item">
                 <i class="fas fa-phone-alt" aria-hidden="true"></i>
                 <div>
-                  <h3>Telefon</h3>
+                  <h3 class="is-sr-only">Telefon</h3>
                   <p><a href="tel:+38513668935">+385 1 366 8935</a></p>
                   <p><a href="tel:+385915451645">+385 91 545 1645</a></p>
                   <p><a href="tel:+385989452701">+385 98 945 2701</a></p>
@@ -3648,7 +3634,7 @@
               <div class="contact-item">
                 <i class="far fa-envelope" aria-hidden="true"></i>
                 <div>
-                  <h3>E-pošta</h3>
+                  <h3 class="is-sr-only">E-pošta</h3>
                   <p>
                     <a href="mailto:ordinacija.martic@gmail.com"
                       >ordinacija.martic@<wbr />gmail.com</a
@@ -3660,7 +3646,7 @@
               <div class="contact-item">
                 <i class="far fa-clock" aria-hidden="true"></i>
                 <div>
-                  <h3>Radno vrijeme</h3>
+                  <h3 class="is-sr-only">Radno vrijeme</h3>
                   <p>
                     Pon, Uto, Čet:
                     <span class="time-range">13:00 – 20:30</span>
