@@ -7,8 +7,9 @@ Matt Pocock workflows, Context7 for library documentation, and Brave Search for
 external evidence when the task calls for them.
 
 The site is one static page, `index.html`, styled with a Bulma 0.9.4 subset and
-local fonts. GitHub Pages serves the repository root as it is, so file paths are
-public URLs; keep them stable. `css/README.md` owns how the CSS, fonts and icons
+local fonts. GitHub Pages builds the repository root with Jekyll, so file paths
+are public URLs; keep them stable, and list repository-only files in
+`_config.yml` under `exclude`. `css/README.md` owns how the CSS, fonts and icons
 are rebuilt. A Next.js rebuild was archived to the ignored
 `output/nextjs-app-2026-11-22.tgz` on 2026-11-22 and is not in use.
 
