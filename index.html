@@ -2027,6 +2027,19 @@
         font-size: var(--fs-xs);
         color: var(--on-dark-muted);
       }
+      /* Wider screens: one left-aligned row, still clear of the floating
+         Call button in the bottom-right corner. */
+      @media screen and (min-width: 769px) {
+        .footer-bar {
+          flex-direction: row;
+          align-items: baseline;
+          gap: 0.75rem;
+        }
+        .footer-meta::before {
+          content: '·';
+          margin-right: 0.75rem;
+        }
+      }
 
       /* ---------- A11y helpers ---------- */
       .skip-link {
