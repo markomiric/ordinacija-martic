@@ -843,13 +843,7 @@
           transform: scale(1.06);
         }
       }
-      /* On narrow/portrait screens, cover-crop lands on the center (hands/lamp);
-         shift toward the right so the people's faces stay in frame. */
-      @media screen and (max-width: 768px) {
-        .hero-bg-img {
-          background-position: 86% 30%;
-        }
-      }
+
       .hero-background::before {
         content: '';
         position: absolute;
@@ -885,6 +879,37 @@
       .hero .title,
       .hero .subtitle {
         color: #fff;
+      }
+      /* Phones: the photo becomes a band above the text, cropped so both
+         dentists' faces show, and fades into the hero colour where the
+         text starts. Text never sits on the faces. */
+      @media screen and (max-width: 768px) {
+        .hero.hero-background {
+          --hero-band: calc(var(--nav-h) + 62vw);
+          min-height: 0;
+          align-items: flex-start;
+        }
+        .hero-bg-img {
+          bottom: auto;
+          height: var(--hero-band);
+          background-position: 81% 30%;
+        }
+        .hero-background::before {
+          bottom: auto;
+          /* Taller than the band: the photo's zoom scale overhangs it. */
+          height: calc(var(--hero-band) * 1.1);
+          background: linear-gradient(
+            180deg,
+            rgba(10, 42, 51, 0.7) 0%,
+            rgba(10, 42, 51, 0.15) calc(var(--nav-h) + 1rem),
+            rgba(10, 42, 51, 0) 60%,
+            #0c2a33 100%
+          );
+        }
+        .hero.hero-background .hero-body {
+          padding-top: calc(var(--hero-band) - 1rem);
+          padding-bottom: 3rem;
+        }
       }
       .hero .title {
         font-family: var(--font-display);
@@ -2152,6 +2177,23 @@
           background: var(--fill-cta);
           color: var(--ink);
         }
+        /* Hidden while the hero's own Book/Call buttons are on screen, so
+           the same actions never show twice. visibility keeps the hidden
+           bar out of the tab order. */
+        .call-fab,
+        .book-bar {
+          transform: translateY(100%);
+          visibility: hidden;
+          transition:
+            transform 0.25s var(--ease),
+            visibility 0s linear 0.25s;
+        }
+        .has-action-bar .call-fab,
+        .has-action-bar .book-bar {
+          transform: none;
+          visibility: visible;
+          transition-delay: 0s;
+        }
         .call-fab:hover,
         .book-bar:hover {
           color: var(--ink);
@@ -2423,6 +2465,19 @@
         }
         window.addEventListener('scroll', onScroll, {passive: true})
         onScroll()
+
+        // Phone action bar appears once the hero buttons have scrolled away.
+        const heroButtons = document.querySelector('.hero .buttons')
+        if (heroButtons && 'IntersectionObserver' in window) {
+          new IntersectionObserver(([entry]) => {
+            document.documentElement.classList.toggle(
+              'has-action-bar',
+              !entry.isIntersecting && entry.boundingClientRect.top < 0,
+            )
+          }).observe(heroButtons)
+        } else {
+          document.documentElement.classList.add('has-action-bar')
+        }
 
         // Back-to-top
         if (scrollTopBtn) {
