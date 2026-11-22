@@ -833,6 +833,15 @@
         width: 100%;
         padding: calc(var(--nav-h) + 2.5rem) 1.5rem 4rem;
       }
+      /* Bulma's hero is a column flexbox, so its own align-items only
+         centres horizontally: centre the text vertically in the tall hero.
+         Phones stack the text under the photo band instead. */
+      @media screen and (min-width: 769px) {
+        .hero.hero-background .hero-body {
+          display: flex;
+          align-items: center;
+        }
+      }
       .hero .title,
       .hero .subtitle {
         color: #fff;
