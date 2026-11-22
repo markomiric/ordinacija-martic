@@ -1087,37 +1087,6 @@
         height: auto;
         display: block;
       }
-      .about-image-accent {
-        position: relative;
-        margin: -56px 20px 0;
-      }
-      .about-stats {
-        background: var(--fill-primary);
-        border-radius: var(--r);
-        padding: 1.4rem 1rem;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        box-shadow: var(--sh-teal);
-      }
-      .about-stat-item {
-        text-align: center;
-        padding: 0.4rem;
-        flex: 1;
-        min-width: 110px;
-      }
-      .about-stat-number {
-        display: block;
-        font-family: var(--font-display);
-        font-size: 2rem;
-        font-weight: 600;
-        color: #fff;
-      }
-      .about-stat-label {
-        display: block;
-        font-size: var(--fs-xs);
-        color: var(--on-dark-soft);
-      }
       .about-text-container {
         flex: 1;
       }
@@ -2591,45 +2560,6 @@
           revealSection(location.hash)
         }
 
-        // --- Count-up stats (About) ---
-        // Hero trust badges stay static: they are visible on load, so a
-        // count-up would show wrong values ("1+ godina") in the first screen.
-        const counters = document.querySelectorAll('.about-stat-number')
-        const runCounter = el => {
-          const raw = el.textContent.trim()
-          const m = raw.match(/^(\d+)(.*)$/)
-          if (!m) return
-          const target = parseInt(m[1], 10),
-            suffix = m[2]
-          if (reduceMotion) {
-            el.textContent = target + suffix
-            return
-          }
-          const dur = 1200,
-            t0 = performance.now()
-          const tick = now => {
-            const p = Math.min((now - t0) / dur, 1)
-            const eased = 1 - Math.pow(1 - p, 3)
-            el.textContent = Math.round(target * eased) + suffix
-            if (p < 1) requestAnimationFrame(tick)
-          }
-          requestAnimationFrame(tick)
-        }
-        if ('IntersectionObserver' in window && counters.length) {
-          const cio = new IntersectionObserver(
-            (entries, obs) => {
-              entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                  runCounter(entry.target)
-                  obs.unobserve(entry.target)
-                }
-              })
-            },
-            {threshold: 0.5},
-          )
-          counters.forEach(c => cio.observe(c))
-        }
-
         // --- Service icons: wrap in a rounded tile ---
         document.querySelectorAll('.service-card > img').forEach(img => {
           const wrap = document.createElement('div')
@@ -2855,22 +2785,6 @@
                   width="1000"
                   height="978"
                 />
-              </div>
-              <div class="about-image-accent">
-                <div class="about-stats">
-                  <div class="about-stat-item">
-                    <span class="about-stat-number">10+</span>
-                    <span class="about-stat-label">Godina iskustva</span>
-                  </div>
-                  <div class="about-stat-item">
-                    <span class="about-stat-number">1000+</span>
-                    <span class="about-stat-label">Zadovoljnih pacijenata</span>
-                  </div>
-                  <div class="about-stat-item">
-                    <span class="about-stat-number">100%</span>
-                    <span class="about-stat-label">Posvećenost kvaliteti</span>
-                  </div>
-                </div>
               </div>
             </div>
 
