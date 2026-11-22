@@ -3,13 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta
-      http-equiv="Referrer-Policy"
-      content="strict-origin-when-cross-origin"
-    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://formspree.io; frame-src 'none'; object-src 'none'"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'none'; frame-src 'none'; object-src 'none'"
     />
     <title>Stomatolog Zagreb (Trešnjevka) – Dental arts Bijelić & Martić</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -78,8 +75,6 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="dns-prefetch" href="https://formspree.io" />
-
     <link rel="stylesheet" href="./css/bulma.min.css" />
     <style>
       /* shortcut: font subsets cover Latin-1 and Croatian; regenerate before adding another language. */
@@ -401,7 +396,6 @@
       /* strip the arc where it shouldn't appear */
       .service-card .title::after,
       .team-card .title::after,
-      .contact-form-container .title::after,
       .title.is-4::after,
       .title.is-5::after,
       .title.is-6::after,
@@ -448,7 +442,6 @@
         z-index: 1;
       }
       /* White cards inside a dark section are light surfaces again. */
-      .contact-form-container,
       .team-card {
         --focus-ring: var(--teal-deep);
       }
@@ -1793,206 +1786,87 @@
         opacity: 1;
       }
 
-      /* ---------- Contact ---------- */
-      /* .surface-dark */
-      /* The surface whitens only the section heading (h2.section-title), not
-         the form's "Pošaljite nam upit" heading inside the white card. */
-      /* Both panels fill the row so their edges line up; the directions
-         button sits at the bottom of the info panel. */
-      .contact-info-container {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: var(--r-lg);
-        padding: 1.5rem;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-      }
-      .contact-info-container .directions-btn {
-        margin-top: auto;
+      /* ---------- Contact (.surface-dark) ---------- */
+      /* One flat list on the dark band: icon, small muted label, then the
+         value in regular white. No boxes inside boxes. */
+      .contact-panel {
+        max-width: 960px;
+        margin: 0 auto;
       }
       .contact-info {
-        margin-bottom: 1rem;
+        display: grid;
+        gap: 0 3rem;
+      }
+      @media screen and (min-width: 769px) {
+        .contact-info {
+          grid-template-columns: 1fr 1fr;
+        }
       }
       .contact-item {
         display: flex;
         align-items: flex-start;
+        gap: 1rem;
+        padding: 1.25rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
         overflow-wrap: anywhere;
-        gap: 0.9rem;
-        margin-bottom: 0.6rem;
-        padding: 0.8rem 0.9rem;
-        border-radius: var(--r-sm);
-        background: rgba(255, 255, 255, 0.05);
       }
-      .contact-item:last-child {
-        margin-bottom: 0;
+      .contact-item > i {
+        width: 1.25rem;
+        margin-top: 0.15rem;
+        text-align: center;
+        color: var(--on-dark-muted);
+        font-size: var(--fs-lg);
+        flex: none;
       }
-      /* Small muted label above a prominent value. */
       .contact-item h3 {
         color: var(--on-dark-muted);
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.35rem;
         font-family: var(--font-sans);
         font-size: var(--fs-xs);
         font-weight: 600;
         letter-spacing: 0.06em;
         text-transform: uppercase;
       }
-      .icon-box {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.12);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--on-dark);
-        font-size: var(--fs-md);
-        flex: none;
-      }
-      /* compact the stacked lines (phones/hours); Bulma's .content class is removed in markup so these win cleanly */
       .contact-info p {
-        color: var(--on-dark-soft);
+        color: var(--on-dark);
         margin-bottom: 0.2rem;
-        line-height: 1.45;
+        line-height: 1.5;
       }
       .contact-info p:last-child {
         margin-bottom: 0;
       }
       .contact-info a {
-        color: #fff;
-        font-weight: 600;
+        color: var(--on-dark);
         text-decoration: underline;
         text-underline-offset: 3px;
-        text-decoration-color: transparent;
-        transition:
-          color 0.2s var(--ease),
-          text-decoration-color 0.2s var(--ease);
+        text-decoration-color: rgba(255, 255, 255, 0.35);
+        transition: text-decoration-color 0.2s var(--ease);
       }
       .contact-info a:hover {
+        color: var(--on-dark);
         text-decoration-color: currentColor;
       }
-
       /* Opening hours: a time range never splits across lines. */
       .time-range {
         white-space: nowrap;
       }
-
-      /* "Get directions" button – opens Google Maps in a new tab */
-      .directions-btn {
+      /* Actions: call is the booking route (coral); email and directions
+         are secondary. */
+      .contact-actions {
         display: flex;
-        align-items: center;
+        flex-wrap: wrap;
         justify-content: center;
-        gap: 0.55rem;
-        min-height: var(--control-h);
-        margin-top: 1rem;
-        padding: 0.95rem 1rem;
-        border-radius: var(--r-sm);
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: #fff;
-        font-weight: 600;
-        transition:
-          background-color 0.2s var(--ease),
-          border-color 0.2s var(--ease),
-          transform 0.2s var(--ease);
+        gap: 0.75rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
       }
-      .directions-btn i {
-        transition: color 0.2s var(--ease);
+      .contact-actions .button {
+        gap: 0.5rem;
       }
-      .directions-btn:hover {
-        background: var(--teal-deep);
-        border-color: var(--teal-deep);
-        color: #fff;
-        transform: translateY(var(--lift-sm));
-      }
-      .directions-btn:hover i {
-        color: #fff;
-      }
-
-      /* Matches the info panel's height only when it holds the form; the
-         phone/email fallback stays a short card. */
-      .contact-form-container:not(:has(form)) {
-        height: auto;
-      }
-      .contact-form-container {
-        height: 100%;
-        border-radius: var(--r-lg);
-        background: var(--paper);
-        box-shadow: var(--sh-lg);
-        border: none;
-      }
-      .contact-form-container .title {
-        color: var(--ink);
-      }
-      .contact-form-container .label {
-        color: var(--ink);
-        font-weight: 600;
-      }
-      .form-intro {
-        color: var(--muted);
-      }
-      .input {
-        height: var(--control-h);
-      }
-      .input,
-      .textarea {
-        border-radius: var(--r-sm);
-        border: 1.5px solid var(--line-strong);
-        box-shadow: none;
-        color: var(--ink);
-        font-family: var(--font-sans);
-        transition:
-          border-color 0.2s var(--ease),
-          box-shadow 0.2s var(--ease);
-      }
-      .input:focus,
-      .textarea:focus {
-        border-color: var(--teal-deep);
-        box-shadow: none;
-      }
-      /* Invalid after the visitor has interacted; the browser's own
-         validation message names the problem. */
-      .input:user-invalid,
-      .textarea:user-invalid {
-        border-color: var(--danger);
-      }
-      .control.has-icons-left .icon {
-        color: var(--muted);
-      }
-
-      /* ---------- Status notices ---------- */
-      .notification {
-        border-radius: var(--r-sm);
-        padding-right: 3.5rem;
-      }
-      .notification.is-success.is-light {
-        background: var(--success-soft);
-        color: var(--success);
-      }
-      .notification.is-danger.is-light {
-        background: var(--danger-soft);
-        color: var(--danger);
-      }
-      /* 32px close target, drawn in the notice's own colour (white cross
-         5.5:1). */
-      .notification > .delete {
-        color: inherit;
-        top: 0.75rem;
-        right: 0.75rem;
-        width: 32px;
-        height: 32px;
-        min-width: 32px;
-        min-height: 32px;
-        max-width: 32px;
-        max-height: 32px;
-        background-color: currentColor;
-      }
-      .notification > .delete:hover,
-      .notification > .delete:focus {
-        background-color: var(--ink);
-      }
-      .notification.is-hidden {
-        display: none;
+      @media screen and (max-width: 768px) {
+        .contact-actions {
+          flex-direction: column;
+        }
       }
 
       /* ---------- Floating actions ---------- */
@@ -2198,19 +2072,8 @@
         white-space: nowrap;
         border: 0;
       }
-      .honeypot-field {
-        display: none;
-      }
 
-      /* iOS: prevent zoom on focus */
       @media screen and (max-width: 768px) {
-        input.input,
-        textarea.textarea {
-          font-size: 16px;
-        }
-        .field.is-grouped {
-          flex-direction: column;
-        }
         /* Partner logos: one compact row instead of three tall cards. */
         .partners-section .columns {
           display: flex;
@@ -2232,9 +2095,7 @@
         /* Stacked cards size to their content; height: 100% is only for
            equal-height rows on wider screens. */
         .team-card,
-        .testimonial-card,
-        .contact-info-container,
-        .contact-form-container {
+        .testimonial-card {
           height: auto;
         }
         .service-card {
@@ -2441,7 +2302,7 @@
         const revealTargets = document.querySelectorAll(
           '.about-image-container, .about-text-content, .service-card, .gallery-item, ' +
             '.case-tabs, .team-card, .testimonial-card, .partner-logo-card, ' +
-            '.contact-info-container, .contact-form-container, #partneri .title, ' +
+            '.contact-panel, #partneri .title, ' +
             '.about-section .has-text-centered, #usluge .container > .has-text-centered, ' +
             '#galerija .has-text-centered, #slucajevi .has-text-centered, ' +
             '#tko-smo-mi .has-text-centered, #testimonials .has-text-centered, #kontakt .has-text-centered',
@@ -2911,8 +2772,8 @@
               <p>
                 Nazovite nas na
                 <a href="tel:+38513668935">+385 1 366 8935</a> ili
-                <a href="#contact-form-heading">pošaljite upit putem obrasca</a
-                >. Termin dogovarate s ordinacijom.
+                <a href="#contact-form-heading">pošaljite nam upit</a>. Termin
+                dogovarate s ordinacijom.
               </p>
             </details>
             <details>
@@ -3757,301 +3618,81 @@
             </p>
           </div>
 
-          <div class="columns is-variable is-6">
-            <div class="column is-5">
-              <div class="contact-info-container">
-                <div class="contact-info">
-                  <div class="contact-item">
-                    <div class="icon-box">
-                      <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                    </div>
-                    <div>
-                      <h3>Adresa</h3>
-                      <p>
-                        <a
-                          href="https://www.google.com/maps/dir/?api=1&amp;destination=Horva%C4%87anska+cesta+47%2C+10000+Zagreb"
-                          target="_blank"
-                          rel="noopener"
-                          >Horvaćanska cesta 47, 10000 Zagreb</a
-                        >
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="contact-item">
-                    <div class="icon-box">
-                      <i class="fas fa-phone-alt" aria-hidden="true"></i>
-                    </div>
-                    <div>
-                      <h3>Telefon</h3>
-                      <p><a href="tel:+38513668935">+385 1 366 8935</a></p>
-                      <p><a href="tel:+385915451645">+385 91 545 1645</a></p>
-                      <p><a href="tel:+385989452701">+385 98 945 2701</a></p>
-                    </div>
-                  </div>
-
-                  <div class="contact-item">
-                    <div class="icon-box">
-                      <i class="far fa-envelope" aria-hidden="true"></i>
-                    </div>
-                    <div>
-                      <h3>Email</h3>
-                      <p>
-                        <a href="mailto:ordinacija.martic@gmail.com"
-                          >ordinacija.martic@<wbr />gmail.com</a
-                        >
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="contact-item">
-                    <div class="icon-box">
-                      <i class="far fa-clock" aria-hidden="true"></i>
-                    </div>
-                    <div>
-                      <h3>Radno vrijeme</h3>
-                      <p>
-                        Pon, Uto, Čet:
-                        <span class="time-range">13:00 – 20:30</span>
-                      </p>
-                      <p>
-                        Sri, Pet: <span class="time-range">07:00 – 14:30</span>
-                      </p>
-                    </div>
-                  </div>
+          <div class="contact-panel">
+            <div class="contact-info">
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                <div>
+                  <h3>Adresa</h3>
+                  <p>
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&amp;destination=Horva%C4%87anska+cesta+47%2C+10000+Zagreb"
+                      target="_blank"
+                      rel="noopener"
+                      >Horvaćanska cesta 47, 10000 Zagreb</a
+                    >
+                  </p>
                 </div>
+              </div>
 
-                <a
-                  class="directions-btn"
-                  href="https://www.google.com/maps/dir/?api=1&amp;destination=Horva%C4%87anska+cesta+47%2C+10000+Zagreb"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <i class="fas fa-directions" aria-hidden="true"></i> Upute za
-                  dolazak
-                  <span class="is-sr-only">(otvara se u Google Kartama)</span>
-                </a>
+              <div class="contact-item">
+                <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                <div>
+                  <h3>Telefon</h3>
+                  <p><a href="tel:+38513668935">+385 1 366 8935</a></p>
+                  <p><a href="tel:+385915451645">+385 91 545 1645</a></p>
+                  <p><a href="tel:+385989452701">+385 98 945 2701</a></p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <i class="far fa-envelope" aria-hidden="true"></i>
+                <div>
+                  <h3>Email</h3>
+                  <p>
+                    <a href="mailto:ordinacija.martic@gmail.com"
+                      >ordinacija.martic@<wbr />gmail.com</a
+                    >
+                  </p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <i class="far fa-clock" aria-hidden="true"></i>
+                <div>
+                  <h3>Radno vrijeme</h3>
+                  <p>
+                    Pon, Uto, Čet:
+                    <span class="time-range">13:00 – 20:30</span>
+                  </p>
+                  <p>Sri, Pet: <span class="time-range">07:00 – 14:30</span></p>
+                </div>
               </div>
             </div>
 
-            <div class="column is-7">
-              <div class="contact-form-container box p-5">
-                <h2 id="contact-form-heading" class="title is-4 mb-2">
-                  Pošaljite nam upit
-                </h2>
-                <p class="form-intro mb-5">
-                  Javit ćemo vam se u najkraćem mogućem roku.
-                </p>
-
-                <form
-                  action="https://formspree.io/f/xpzorojb"
-                  method="POST"
-                  aria-labelledby="contact-form-heading"
-                >
-                  <!-- Honeypot field to prevent spam -->
-                  <div class="honeypot-field">
-                    <label class="is-sr-only"
-                      >Leave this field empty if you're human:
-                      <input name="_gotcha" tabindex="-1" autocomplete="off"
-                    /></label>
-                  </div>
-
-                  <div class="field">
-                    <label for="name" class="label">Ime</label>
-                    <div class="control has-icons-left">
-                      <input
-                        id="name"
-                        class="input"
-                        type="text"
-                        placeholder="Vaše ime"
-                        name="_name"
-                        required
-                        aria-required="true"
-                        minlength="2"
-                        maxlength="50"
-                        pattern="[A-Za-zČčĆćŽžĐđŠš\s]+"
-                        title="Molimo unesite ispravno ime (samo slova i razmaci)"
-                      />
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-user" aria-hidden="true"></i>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <label for="email" class="label">Email</label>
-                    <div class="control has-icons-left">
-                      <input
-                        id="email"
-                        class="input"
-                        type="email"
-                        placeholder="Vaš email"
-                        name="_replyto"
-                        required
-                        aria-required="true"
-                        maxlength="100"
-                        pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}"
-                        title="Molimo unesite ispravnu email adresu"
-                      />
-                      <span class="icon is-small is-left">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div class="field">
-                    <label for="message" class="label">Poruka</label>
-                    <div class="control">
-                      <textarea
-                        id="message"
-                        class="textarea"
-                        rows="5"
-                        placeholder="Vaša poruka..."
-                        name="_content"
-                        required
-                        aria-required="true"
-                        minlength="10"
-                        maxlength="1000"
-                      ></textarea>
-                    </div>
-                  </div>
-
-                  <div class="field mt-5">
-                    <div class="control">
-                      <button
-                        class="button is-primary is-fullwidth"
-                        type="submit"
-                        id="submit-button"
-                      >
-                        <strong>Pošalji upit</strong>
-                        <span class="send-button-icon ml-2"
-                          ><i class="fas fa-paper-plane" aria-hidden="true"></i
-                        ></span>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-
-                <!-- Inline submit feedback, announced to screen readers -->
-                <div
-                  class="notification is-success is-light is-hidden mt-4"
-                  id="form-success"
-                  role="status"
-                >
-                  <button
-                    class="delete"
-                    type="button"
-                    aria-label="Zatvori obavijest"
-                  ></button>
-                  <span class="icon mr-2"
-                    ><i class="fas fa-check-circle" aria-hidden="true"></i
-                  ></span>
-                  <span>Vaša poruka je uspješno poslana. Hvala vam!</span>
-                </div>
-                <div
-                  class="notification is-danger is-light is-hidden mt-4"
-                  id="form-error"
-                  role="alert"
-                >
-                  <button
-                    class="delete"
-                    type="button"
-                    aria-label="Zatvori obavijest"
-                  ></button>
-                  <span class="icon mr-2"
-                    ><i class="fas fa-exclamation-circle" aria-hidden="true"></i
-                  ></span>
-                  <span id="form-error-text"
-                    >Došlo je do greške prilikom slanja poruke. Molimo pokušajte
-                    ponovno.</span
-                  >
-                </div>
-              </div>
+            <div id="contact-form-heading" class="contact-actions">
+              <a class="button is-cta" href="tel:+38513668935"
+                ><i class="fas fa-phone-alt" aria-hidden="true"></i> Nazovite za
+                termin</a
+              >
+              <a
+                class="button is-outlined is-white"
+                href="mailto:ordinacija.martic@gmail.com?subject=Upit%20s%20web-stranice"
+                ><i class="far fa-envelope" aria-hidden="true"></i> Pošaljite
+                e-poruku</a
+              >
+              <a
+                class="button is-outlined is-white"
+                href="https://www.google.com/maps/dir/?api=1&amp;destination=Horva%C4%87anska+cesta+47%2C+10000+Zagreb"
+                target="_blank"
+                rel="noopener"
+                ><i class="fas fa-directions" aria-hidden="true"></i> Upute za
+                dolazak
+                <span class="is-sr-only">(otvara se u Google Kartama)</span></a
+              >
             </div>
           </div>
         </div>
-
-        <script>
-          document.addEventListener('DOMContentLoaded', function () {
-            const form = document.querySelector(
-              'form[action="https://formspree.io/f/xpzorojb"]',
-            )
-            const successMessage = document.getElementById('form-success')
-            const errorMessage = document.getElementById('form-error')
-            const errorText = document.getElementById('form-error-text')
-            const submitButton = document.getElementById('submit-button')
-            // Pending state: Bulma's .is-loading spinner. The button stays
-            // focusable; a second submit is ignored instead of disabling it.
-            const setPending = pending => {
-              submitButton.classList.toggle('is-loading', pending)
-              submitButton.setAttribute('aria-disabled', String(pending))
-            }
-
-            // Setup notification close buttons
-            document
-              .querySelectorAll('.notification .delete')
-              .forEach(button => {
-                button.addEventListener('click', function () {
-                  this.parentNode.classList.add('is-hidden')
-                })
-              })
-
-            if (form) {
-              form.addEventListener('submit', function (event) {
-                event.preventDefault()
-                if (submitButton.classList.contains('is-loading')) return
-
-                // Hide any previous messages
-                successMessage.classList.add('is-hidden')
-                errorMessage.classList.add('is-hidden')
-
-                setPending(true)
-
-                // Simple client-side validation
-                const nameInput = document.getElementById('name')
-                const emailInput = document.getElementById('email')
-                const messageInput = document.getElementById('message')
-
-                if (
-                  !nameInput.checkValidity() ||
-                  !emailInput.checkValidity() ||
-                  !messageInput.checkValidity()
-                ) {
-                  // Restore the button, then let the browser surface the errors
-                  setPending(false)
-                  form.reportValidity()
-                  return
-                }
-
-                // Submit the form using Fetch API
-                fetch(form.action, {
-                  method: form.method,
-                  body: new FormData(form),
-                  headers: {
-                    Accept: 'application/json',
-                  },
-                })
-                  .then(response => {
-                    if (!response.ok) throw new Error('Form submission failed')
-                    form.reset()
-                    successMessage.classList.remove('is-hidden')
-                    setPending(false)
-                  })
-                  .catch(error => {
-                    console.error('Error:', error)
-
-                    // Update only the message text: the notice keeps its
-                    // icon and close button.
-                    errorText.textContent = navigator.onLine
-                      ? 'Došlo je do greške prilikom slanja poruke. Molimo pokušajte ponovno.'
-                      : 'Nema internet veze. Molimo provjerite vašu mrežnu vezu i pokušajte ponovno.'
-                    errorMessage.classList.remove('is-hidden')
-                    setPending(false)
-                  })
-              })
-            }
-          })
-        </script>
       </section>
     </main>
 
