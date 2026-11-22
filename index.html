@@ -2001,12 +2001,14 @@
       .footer .container {
         max-width: var(--maxw);
       }
-      /* left-aligned so the bottom-right stays clear for the floating Call button */
+      /* One row that wraps only when the line really doesn't fit (narrow
+         phones); left-aligned so the bottom-right stays clear for the
+         floating Call button. */
       .footer-bar {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.35rem;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.35rem 1.25rem;
       }
       .footer-brand {
         font-family: var(--font-display);
@@ -2027,19 +2029,6 @@
       .footer-meta {
         font-size: var(--fs-xs);
         color: var(--on-dark-muted);
-      }
-      /* Wider screens: one left-aligned row, still clear of the floating
-         Call button in the bottom-right corner. */
-      @media screen and (min-width: 769px) {
-        .footer-bar {
-          flex-direction: row;
-          align-items: baseline;
-          gap: 0.75rem;
-        }
-        .footer-meta::before {
-          content: '·';
-          margin-right: 0.75rem;
-        }
       }
 
       /* ---------- A11y helpers ---------- */
