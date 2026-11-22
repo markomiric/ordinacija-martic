@@ -381,17 +381,17 @@
         position: relative;
       }
 
-      h2.title.is-size-3 {
+      h2.section-title {
         position: relative;
         display: inline-block;
         font-family: var(--font-display);
         font-weight: 700;
         letter-spacing: -0.02em;
-        font-size: clamp(2rem, 4.4vw, 3rem) !important;
+        font-size: clamp(2rem, 4.4vw, 3rem);
         margin-bottom: 2.25rem;
         padding-bottom: 1.15rem;
       }
-      h2.title.is-size-3::after {
+      h2.section-title::after {
         content: '';
         position: absolute;
         left: 50%;
@@ -466,8 +466,8 @@
       .team-card {
         --focus-ring: var(--teal-deep);
       }
-      .surface-brand h2.title.is-size-3,
-      .surface-dark h2.title.is-size-3 {
+      .surface-brand h2.section-title,
+      .surface-dark h2.section-title {
         color: var(--on-dark);
       }
       .surface-brand .subtitle.is-5,
@@ -792,8 +792,11 @@
           visibility: visible;
           transition-delay: 0s;
         }
-        .site-nav a.section-link {
-          color: var(--ink-soft) !important;
+        /* Matches the solid-header selector so the open menu keeps dark
+           links over its white panel at any scroll position. */
+        .site-nav a.section-link,
+        .site-header.is-solid .site-nav a.section-link {
+          color: var(--ink-soft);
           padding: 0.85rem 1rem;
           font-size: var(--fs-md);
           border-radius: var(--r-sm);
@@ -844,7 +847,7 @@
          shift toward the right so the people's faces stay in frame. */
       @media screen and (max-width: 768px) {
         .hero-bg-img {
-          background-position: 78% 32%;
+          background-position: 86% 30%;
         }
       }
       .hero-background::before {
@@ -1028,7 +1031,7 @@
         max-width: var(--maxw);
         margin: 0 auto;
       }
-      @media screen and (min-width: 992px) {
+      @media screen and (min-width: 1024px) {
         .about-content {
           flex-direction: row;
           align-items: flex-start;
@@ -1169,7 +1172,7 @@
         border: 1px solid var(--teal-soft);
         border-left: 4px solid var(--teal);
       }
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: 769px) {
         .about-hzzo-content {
           flex-direction: row;
           justify-content: space-between;
@@ -1270,7 +1273,7 @@
           grid-template-columns: 1fr 1fr;
         }
       }
-      @media screen and (min-width: 992px) {
+      @media screen and (min-width: 1024px) {
         .gallery-grid {
           grid-template-columns: 1fr 1fr 1fr;
         }
@@ -1489,6 +1492,35 @@
         margin: 0 auto;
       }
 
+      /* Desktop: the photos lead and the story sits beside them, so the
+         result is visible without scrolling past the text. */
+      @media screen and (min-width: 1024px) {
+        .case-tab-content {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+          grid-template-areas:
+            'desc slider'
+            'desc hint';
+          column-gap: 2.5rem;
+          align-items: center;
+        }
+        .case-description {
+          grid-area: desc;
+          margin-bottom: 0;
+          text-align: left;
+        }
+        .case-description p {
+          margin: 0;
+        }
+        .case-tab-content .ba-slider {
+          grid-area: slider;
+          max-width: none;
+        }
+        .case-tab-content .ba-hint {
+          grid-area: hint;
+        }
+      }
+
       .ba-slider {
         position: relative;
         width: 100%;
@@ -1635,15 +1667,17 @@
         margin: 1.35rem 0 0.5rem;
       }
       .doctor-info .title {
-        font-size: var(--fs-2xl) !important;
+        font-size: var(--fs-2xl);
         color: var(--ink);
-        margin-bottom: 0.25rem !important;
+        margin-bottom: 0.25rem;
       }
+      /* Matches Bulma's .title:not(.is-spaced) + .subtitle (-1.25rem). */
+      .doctor-info .title + .subtitle,
       .doctor-info .subtitle {
-        font-size: var(--fs-sm) !important;
+        font-size: var(--fs-sm);
         color: var(--teal-deep);
         font-weight: 600;
-        margin-top: 0 !important;
+        margin-top: 0;
         letter-spacing: 0.04em;
         text-transform: uppercase;
       }
@@ -1811,7 +1845,7 @@
           rgba(255, 122, 89, 0) 60%
         );
       }
-      /* The surface whitens only the section heading (h2.is-size-3), not
+      /* The surface whitens only the section heading (h2.section-title), not
          the form's "Pošaljite nam upit" heading inside the white card. */
       .contact-info-container {
         background: rgba(255, 255, 255, 0.06);
@@ -2009,6 +2043,9 @@
           transform 0.2s var(--ease),
           color 0.2s var(--ease);
       }
+      .scroll-to-top.is-shown {
+        display: block;
+      }
       .scroll-to-top:hover {
         color: var(--teal-deep);
         transform: translateY(var(--lift-sm));
@@ -2043,13 +2080,63 @@
       .call-fab i {
         font-size: var(--fs-lg);
       }
-      @media screen and (max-width: 600px) {
-        .call-fab {
-          padding: 0;
-          width: 54px;
-          justify-content: center;
+      .book-bar {
+        display: none;
+      }
+      /* Phones: a bottom bar with Call and Book replaces the floating
+         button; back-to-top is dropped (the header is always one tap away). */
+      @media screen and (max-width: 768px) {
+        html {
+          /* Focused fields scroll clear of the bar. */
+          scroll-padding-bottom: calc(72px + env(safe-area-inset-bottom));
         }
-        .call-fab .call-fab-text {
+        body {
+          padding-bottom: calc(60px + env(safe-area-inset-bottom));
+        }
+        /* The bar sits where the hero's scroll arrow was. */
+        .hero-scroll {
+          display: none;
+        }
+        .call-fab,
+        .book-bar {
+          position: fixed;
+          bottom: 0;
+          z-index: 100;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          width: 50%;
+          height: calc(60px + env(safe-area-inset-bottom));
+          padding: 0 0.5rem env(safe-area-inset-bottom);
+          border-radius: 0;
+          font-weight: 700;
+          box-shadow: 0 -6px 18px rgba(16, 48, 59, 0.12);
+        }
+        .call-fab {
+          left: 0;
+          right: auto;
+          background: var(--paper);
+          color: var(--ink);
+          border-top: 1px solid var(--line);
+        }
+        .book-bar {
+          right: 0;
+          background: var(--fill-cta);
+          color: var(--ink);
+        }
+        .call-fab:hover,
+        .book-bar:hover {
+          color: var(--ink);
+          transform: none;
+        }
+        .call-fab:focus-visible,
+        .book-bar:focus-visible {
+          outline: 3px solid var(--ink);
+          outline-offset: -5px;
+          box-shadow: none;
+        }
+        .scroll-to-top.is-shown {
           display: none;
         }
       }
@@ -2090,12 +2177,6 @@
       .footer-meta {
         font-size: var(--fs-xs);
         color: var(--on-dark-muted);
-      }
-      /* Keep the text clear of the floating Call and back-to-top buttons. */
-      @media screen and (max-width: 768px) {
-        .footer-bar {
-          padding-right: 5rem;
-        }
       }
 
       /* ---------- A11y helpers ---------- */
@@ -2142,7 +2223,34 @@
           flex-direction: column;
         }
         .service-card {
-          margin-bottom: 1.25rem;
+          display: grid;
+          grid-template-columns: 56px 1fr;
+          column-gap: 1rem;
+          align-items: start;
+          min-height: 0;
+          padding: 1.25rem;
+          text-align: left;
+        }
+        .service-card .icon-wrap {
+          grid-row: span 2;
+          width: 56px;
+          height: 56px;
+          border-radius: 16px;
+          margin: 0;
+        }
+        .service-card img {
+          width: 32px;
+          height: 32px;
+        }
+        /* Explicit column: also correct before the script adds .icon-wrap. */
+        .service-card h3,
+        .service-card p {
+          grid-column: 2;
+        }
+        .service-card h3,
+        .service-card .service-title {
+          margin-bottom: 0.35rem;
+          font-size: var(--fs-lg);
         }
       }
 
@@ -2179,6 +2287,7 @@
         .hero-background,
         .scroll-to-top,
         .call-fab,
+        .book-bar,
         #kontakt form,
         .skip-link,
         .hero-scroll {
@@ -2273,6 +2382,8 @@
           nav
             .querySelectorAll('a')
             .forEach(a => a.addEventListener('click', closeMenu))
+          const bookBar = document.querySelector('.book-bar')
+          if (bookBar) bookBar.addEventListener('click', closeMenu)
         }
 
         // --- Sticky header: solid state after scrolling past the top ---
@@ -2281,8 +2392,7 @@
         const onScroll = () => {
           const y = window.pageYOffset || document.documentElement.scrollTop
           if (header) header.classList.toggle('is-solid', y > 40)
-          if (scrollTopBtn)
-            scrollTopBtn.style.display = y > 400 ? 'block' : 'none'
+          if (scrollTopBtn) scrollTopBtn.classList.toggle('is-shown', y > 400)
         }
         window.addEventListener('scroll', onScroll, {passive: true})
         onScroll()
@@ -2495,6 +2605,10 @@
       <i class="fas fa-phone-alt" aria-hidden="true"></i>
       <span class="call-fab-text">Nazovite</span>
     </a>
+    <a class="book-bar" href="#contact-form-heading">
+      <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+      <span>Rezervirajte termin</span>
+    </a>
 
     <!-- Sticky site header -->
     <header id="siteHeader" class="site-header">
@@ -2593,7 +2707,7 @@
       <section id="o-nama" class="section about-section">
         <div class="container">
           <div class="has-text-centered mb-6">
-            <h2 class="title is-size-3">O nama</h2>
+            <h2 class="title section-title">O nama</h2>
             <p class="subtitle is-5 mb-5">
               Upoznajte našu ordinaciju i naš pristup
             </p>
@@ -2722,7 +2836,7 @@
 
       <section id="usluge" class="section surface-brand services-section">
         <div class="container has-text-centered">
-          <h2 class="title is-size-3">Usluge koje nudimo</h2>
+          <h2 class="title section-title">Usluge koje nudimo</h2>
           <p class="subtitle is-5 mb-6">
             Pružamo širok spektar stomatoloških usluga za cijelu obitelj
           </p>
@@ -2821,7 +2935,7 @@
       <section id="pitanja" class="section" aria-labelledby="pitanja-heading">
         <div class="container">
           <div class="has-text-centered">
-            <h2 id="pitanja-heading" class="title is-size-3">
+            <h2 id="pitanja-heading" class="title section-title">
               Prvi pregled i naručivanje
             </h2>
             <p class="subtitle is-5 mb-5">
@@ -2874,7 +2988,7 @@
 
       <section id="galerija" class="section gallery-section">
         <div class="container has-text-centered">
-          <h2 class="title is-size-3">Naša ordinacija</h2>
+          <h2 class="title section-title">Naša ordinacija</h2>
           <p class="subtitle is-5 mb-6">
             Pogledajte naš moderno opremljeni prostor
           </p>
@@ -3144,7 +3258,7 @@
       <section id="slucajevi" class="section surface-warm">
         <div class="container">
           <div class="has-text-centered">
-            <h2 class="title is-size-3">Prikaz slučajeva</h2>
+            <h2 class="title section-title">Prikaz slučajeva</h2>
             <p class="subtitle is-5 mb-5">Pogledajte rezultate naših zahvata</p>
           </div>
 
@@ -3410,7 +3524,7 @@
 
       <section id="tko-smo-mi" class="section surface-dark team-section">
         <div class="container has-text-centered">
-          <h2 class="title is-size-3">Naš stručni tim</h2>
+          <h2 class="title section-title">Naš stručni tim</h2>
           <p class="subtitle is-5 mb-6">
             Upoznajte naše iskusne stomatologe koji će se pobrinuti za vaš
             osmijeh
@@ -3493,7 +3607,7 @@
         class="section surface-tint testimonials-section"
       >
         <div class="container has-text-centered">
-          <h2 class="title is-size-3">Što kažu naši pacijenti?</h2>
+          <h2 class="title section-title">Što kažu naši pacijenti?</h2>
           <p class="subtitle is-5 mb-6">
             Iskustva onih koji su nam povjerili svoje osmijehe
           </p>
@@ -3617,7 +3731,7 @@
 
       <section id="partneri" class="section partners-section">
         <div class="container has-text-centered">
-          <h2 class="title is-size-3">
+          <h2 class="title section-title">
             Koristimo samo najkvalitetnije proizvode
           </h2>
           <p class="subtitle is-5 mb-5">
@@ -3676,7 +3790,7 @@
       <section id="kontakt" class="section surface-dark contact-section">
         <div class="container">
           <div class="has-text-centered mb-6">
-            <h2 class="title is-size-3">Kontaktirajte nas</h2>
+            <h2 class="title section-title">Kontaktirajte nas</h2>
             <p class="subtitle is-5">
               Rezervirajte svoj termin ili nam pošaljite upit
             </p>
