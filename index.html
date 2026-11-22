@@ -201,7 +201,6 @@
         --teal-tint: #eff8f6; /* faint band bg */
         --coral: #ff7a59; /* focal accent / smile-arc */
         --paper: #ffffff;
-        --bg: #f6f9f8; /* page background */
         --muted: #5c6b70; /* secondary text (AA on white) */
         --line: #e4ebea; /* hairlines */
 
@@ -289,7 +288,10 @@
       body {
         font-family: var(--font-sans);
         color: var(--ink-soft);
-        background-color: var(--bg);
+        /* Every section paints its own surface; the page itself only shows
+           in the overscroll area and under the phone bar's reserved space,
+           both next to the dark header or footer. */
+        background-color: var(--ink);
       }
       body {
         -webkit-font-smoothing: antialiased;
@@ -1977,6 +1979,18 @@
         }
       }
 
+      /* Hidden while the contact buttons are visible, so Call never shows
+         twice; visibility keeps the hidden buttons out of the tab order. */
+      html.contact-in-view .call-fab,
+      html.contact-in-view .book-bar {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition:
+          opacity 0.2s var(--ease),
+          visibility 0s linear 0.2s;
+      }
+
       /* ---------- Footer (minimal sign-off) ---------- */
       .footer {
         --focus-ring: var(--on-dark);
@@ -2271,6 +2285,18 @@
           }).observe(heroButtons)
         } else {
           document.documentElement.classList.add('has-action-bar')
+        }
+
+        // Floating Call button and phone bar step aside while the contact
+        // section's own Call/Email/Directions buttons are on screen.
+        const contactActions = document.querySelector('.contact-actions')
+        if (contactActions && 'IntersectionObserver' in window) {
+          new IntersectionObserver(([entry]) => {
+            document.documentElement.classList.toggle(
+              'contact-in-view',
+              entry.isIntersecting,
+            )
+          }).observe(contactActions)
         }
 
         // Back-to-top
