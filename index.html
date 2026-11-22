@@ -907,8 +907,13 @@
           );
         }
         .hero.hero-background .hero-body {
-          padding-top: calc(var(--hero-band) - 1rem);
+          padding-top: var(--hero-band);
           padding-bottom: 3rem;
+        }
+        /* The headline already says what and where; the pill would sit on
+           the photo's fade edge. */
+        .hero .hero-eyebrow {
+          display: none;
         }
       }
       .hero .title {
