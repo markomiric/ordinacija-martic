@@ -205,11 +205,8 @@
         --teal-soft: #e1f3f1; /* tint fills */
         --teal-tint: #eff8f6; /* faint band bg */
         --coral: #ff7a59; /* focal accent / smile-arc */
-        --coral-soft: #ffede7;
         --paper: #ffffff;
         --bg: #f6f9f8; /* page background */
-        --bg-warm: #fbf6f2; /* warm alt band */
-        --ink-deep: #0b3a44; /* mid-stop of the dark band gradients */
         --muted: #5c6b70; /* secondary text (AA on white) */
         --line: #e4ebea; /* hairlines */
         --line-strong: #7d8e93; /* form-field borders (3:1 on white) */
@@ -343,7 +340,7 @@
       }
 
       ::selection {
-        background: var(--coral);
+        background: var(--teal-deep);
         color: #fff;
       }
 
@@ -421,9 +418,6 @@
       /* ---------- Surfaces ----------
          A section sets its surface once; headings, subtitles and the focus
          ring follow. Light surfaces use the :root defaults. */
-      .surface-warm {
-        background: var(--bg-warm);
-      }
       .surface-tint {
         background: var(--teal-tint);
       }
@@ -436,20 +430,12 @@
         --focus-ring: var(--on-dark);
         color: var(--on-dark);
       }
+      /* Flat colour bands: one teal, one ink. */
       .surface-brand {
-        background: linear-gradient(
-          160deg,
-          var(--teal-deep) 0%,
-          var(--teal-700) 100%
-        );
+        background: var(--fill-primary);
       }
       .surface-dark {
-        background: linear-gradient(
-          160deg,
-          var(--ink) 0%,
-          var(--ink-deep) 55%,
-          var(--teal-deep) 130%
-        );
+        background: var(--ink);
       }
       .surface-brand,
       .surface-dark {
@@ -574,17 +560,6 @@
         border-color: transparent transparent var(--ink) var(--ink) !important;
       }
 
-      .about-cta-button {
-        font-size: var(--fs-md);
-      }
-      .about-cta-button .icon {
-        margin-left: 0.5rem;
-        transition: transform 0.3s var(--ease);
-      }
-      .about-cta-button:hover .icon {
-        transform: translateX(5px);
-      }
-
       /* ---------- Reveal-on-scroll ---------- */
       .reveal {
         opacity: 0;
@@ -690,7 +665,7 @@
         bottom: 6px;
         width: 0;
         height: 2px;
-        background: var(--coral);
+        background: currentColor;
         transform: translateX(-50%);
         transition: width 0.25s var(--ease);
       }
@@ -825,7 +800,7 @@
         min-height: 100svh;
         display: flex;
         align-items: center;
-        background: #0c2a33;
+        background: var(--ink);
       }
       .hero-bg-img {
         position: absolute;
@@ -857,11 +832,6 @@
             rgba(9, 40, 49, 0.66) 34%,
             rgba(9, 40, 49, 0.28) 60%,
             rgba(9, 40, 49, 0.1) 100%
-          ),
-          radial-gradient(
-            110% 90% at 12% 18%,
-            rgba(14, 143, 138, 0.45) 0%,
-            rgba(14, 143, 138, 0) 55%
           ),
           linear-gradient(
             180deg,
@@ -903,7 +873,7 @@
             rgba(10, 42, 51, 0.7) 0%,
             rgba(10, 42, 51, 0.15) calc(var(--nav-h) + 1rem),
             rgba(10, 42, 51, 0) 60%,
-            #0c2a33 100%
+            var(--ink) 100%
           );
         }
         .hero.hero-background .hero-body {
@@ -1005,7 +975,7 @@
         color: #fff;
       }
       .trust-badge i {
-        color: var(--coral);
+        color: var(--on-dark);
         font-size: 1.4rem;
       }
       .trust-badge > div {
@@ -1057,7 +1027,7 @@
 
       /* ---------- About ---------- */
       .about-section {
-        background: var(--bg);
+        background: var(--paper);
       }
       .about-content {
         display: flex;
@@ -1111,7 +1081,7 @@
         width: 22px;
         height: 3px;
         border-radius: 2px;
-        background: var(--coral);
+        background: var(--teal-deep);
         flex: none;
       }
       .about-paragraph {
@@ -1158,10 +1128,6 @@
         color: var(--ink);
         font-size: var(--fs-sm);
       }
-      .about-cta {
-        margin-top: 2rem;
-      }
-
       .about-hzzo {
         margin: 2rem 0;
       }
@@ -1215,18 +1181,6 @@
       }
 
       /* ---------- Services (teal band: .surface-brand) ---------- */
-      .services-section::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        background: radial-gradient(
-          60% 60% at 85% 15%,
-          rgba(255, 255, 255, 0.1) 0%,
-          rgba(255, 255, 255, 0) 60%
-        );
-      }
-
       .service-card {
         padding: 2rem 1.75rem;
         border-radius: var(--r);
@@ -1269,7 +1223,7 @@
 
       /* ---------- Gallery ---------- */
       .gallery-section {
-        background: var(--paper);
+        background: var(--teal-tint);
       }
       .gallery-container {
         max-width: var(--maxw);
@@ -1433,7 +1387,7 @@
         background: var(--fill-primary);
       }
 
-      /* ---------- Cases + before/after slider (.surface-warm) ---------- */
+      /* ---------- Cases + before/after slider (.surface-paper) ---------- */
       .case-tabs {
         max-width: 960px;
         margin: 0 auto;
@@ -1567,15 +1521,14 @@
         padding: 0.3rem 0.65rem;
         border-radius: var(--r-pill);
       }
-      /* Ink on coral 5.4:1, white on success 5.5:1 */
+      /* White on ink 13:1, white on teal-deep 6.1:1 */
       .ba-label--before {
         left: 12px;
-        background: var(--coral);
-        color: var(--ink);
+        background: var(--ink);
       }
       .ba-label--after {
         right: 12px;
-        background: var(--success);
+        background: var(--teal-deep);
       }
       .ba-divider {
         position: absolute;
@@ -1636,17 +1589,6 @@
 
       /* ---------- Team ---------- */
       /* .surface-dark */
-      .team-section::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        background: radial-gradient(
-          50% 50% at 80% 10%,
-          rgba(255, 122, 89, 0.18) 0%,
-          rgba(255, 122, 89, 0) 60%
-        );
-      }
       .team-card {
         padding: 2.5rem 2rem;
         border-radius: var(--r-lg);
@@ -1654,7 +1596,6 @@
         box-shadow: var(--sh-lg);
         height: 100%;
         text-align: center;
-        border-top: 4px solid var(--coral);
       }
       .team-image-container {
         position: relative;
@@ -1745,7 +1686,7 @@
         font-family: var(--font-display);
         font-size: 72px;
         line-height: 1;
-        color: var(--coral-soft);
+        color: var(--teal-soft);
         z-index: 0;
       }
       .testimonial-content {
@@ -1854,17 +1795,6 @@
 
       /* ---------- Contact ---------- */
       /* .surface-dark */
-      .contact-section::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        background: radial-gradient(
-          55% 55% at 15% 20%,
-          rgba(255, 122, 89, 0.16) 0%,
-          rgba(255, 122, 89, 0) 60%
-        );
-      }
       /* The surface whitens only the section heading (h2.section-title), not
          the form's "Pošaljite nam upit" heading inside the white card. */
       /* Both panels fill the row so their edges line up; the directions
@@ -1911,11 +1841,11 @@
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        background: rgba(255, 122, 89, 0.18);
+        background: rgba(255, 255, 255, 0.12);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--coral);
+        color: var(--on-dark);
         font-size: var(--fs-md);
         flex: none;
       }
@@ -1939,8 +1869,7 @@
           text-decoration-color 0.2s var(--ease);
       }
       .contact-info a:hover {
-        color: var(--coral);
-        text-decoration-color: var(--coral);
+        text-decoration-color: currentColor;
       }
 
       /* Opening hours: a time range never splits across lines. */
@@ -1968,7 +1897,6 @@
           transform 0.2s var(--ease);
       }
       .directions-btn i {
-        color: var(--coral);
         transition: color 0.2s var(--ease);
       }
       .directions-btn:hover {
@@ -2864,15 +2792,6 @@
                     </div>
                   </div>
                 </div>
-
-                <div class="about-cta">
-                  <a href="#kontakt" class="button is-primary about-cta-button">
-                    <span>Rezervirajte svoj termin</span>
-                    <span class="icon"
-                      ><i class="fas fa-arrow-right" aria-hidden="true"></i
-                    ></span>
-                  </a>
-                </div>
               </div>
             </div>
           </div>
@@ -2969,15 +2888,14 @@
               </div>
             </div>
           </div>
-          <p class="mt-5">
-            <a class="button is-outlined is-white" href="#pitanja"
-              >Prvi pregled i naručivanje</a
-            >
-          </p>
         </div>
       </section>
 
-      <section id="pitanja" class="section" aria-labelledby="pitanja-heading">
+      <section
+        id="pitanja"
+        class="section surface-paper"
+        aria-labelledby="pitanja-heading"
+      >
         <div class="container">
           <div class="has-text-centered">
             <h2 id="pitanja-heading" class="title section-title">
@@ -3298,7 +3216,7 @@
         </script>
       </section>
 
-      <section id="slucajevi" class="section surface-warm">
+      <section id="slucajevi" class="section surface-paper">
         <div class="container">
           <div class="has-text-centered">
             <h2 class="title section-title">Prikaz slučajeva</h2>
