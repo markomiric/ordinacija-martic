@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'none'; frame-src 'none'; object-src 'none'"
+    />
+    <title>Cjenik usluga – Dental arts Bijelić & Martić</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Cjenik stomatoloških usluga ordinacije Dental arts Bijelić & Martić, Horvaćanska cesta 47, Zagreb, s baznim cijenama i strojno čitljivim cjenikom."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#10303B" />
+    <link rel="canonical" href="https://ordinacija-martic.hr/cjenik/" />
+    <link rel="icon" href="../img/logo.png" type="image/png" sizes="512x512" />
+    <link rel="icon" href="../img/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="../img/apple-touch-icon.png" />
+    <link
+      rel="preload"
+      href="../fonts/inter-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <style>
+      @font-face {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400 700;
+        font-display: swap;
+        src: url('../fonts/inter-latin.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Plus Jakarta Sans';
+        font-style: normal;
+        font-weight: 400 800;
+        font-display: swap;
+        src: url('../fonts/plus-jakarta-sans-latin.woff2') format('woff2');
+      }
+      /* Same tokens as the home page, limited to what this page uses. */
+      :root {
+        color-scheme: light;
+        --ink: #10303b;
+        --ink-soft: #33505a;
+        --teal-deep: #0b6e6a;
+        --teal-tint: #eff8f6;
+        --coral: #ff7a59;
+        --muted: #5c6b70;
+        --line: #e4ebea;
+        --paper: #ffffff;
+        --on-dark-muted: rgba(255, 255, 255, 0.7);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family:
+          'Inter',
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          sans-serif;
+        color: var(--ink-soft);
+        background: var(--paper);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: var(--teal-deep);
+      }
+      a:focus-visible {
+        outline: 3px solid var(--teal-deep);
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+      .wrap {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+      }
+      .top {
+        background: var(--ink);
+        color: #fff;
+      }
+      .top .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        min-height: 64px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        color: #fff;
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .brand::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--coral);
+      }
+      .top a:focus-visible {
+        outline-color: #fff;
+      }
+      .back {
+        color: var(--on-dark-muted);
+        font-size: 0.95rem;
+        white-space: nowrap;
+      }
+      main {
+        padding: 2.5rem 0 4rem;
+      }
+      h1 {
+        margin: 0 0 0.75rem;
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        font-size: clamp(2rem, 5vw, 2.75rem);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+      }
+      .lead {
+        margin: 0 0 1.5rem;
+        max-width: 62ch;
+      }
+      .notes {
+        margin: 0 0 2rem;
+        padding: 1rem 1.25rem;
+        border-radius: 12px;
+        background: var(--teal-tint);
+        font-size: 0.95rem;
+      }
+      .notes p {
+        margin: 0.25rem 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+      }
+      caption {
+        text-align: left;
+        color: var(--muted);
+        font-size: 0.85rem;
+        padding-bottom: 0.5rem;
+      }
+      th,
+      td {
+        padding: 0.65rem 0.5rem;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        color: var(--ink);
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-bottom-width: 2px;
+      }
+      .num {
+        text-align: right;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+      td:nth-child(2) {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .sale {
+        display: block;
+        color: var(--teal-deep);
+        font-size: 0.85rem;
+      }
+      .files {
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--line);
+        font-size: 0.95rem;
+      }
+      .files h2 {
+        margin: 0 0 0.5rem;
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        font-size: 1.15rem;
+        color: var(--ink);
+      }
+      .files ul {
+        margin: 0.25rem 0 0;
+        padding-left: 1.25rem;
+      }
+      .call {
+        display: inline-block;
+        margin-top: 2rem;
+        padding: 0.7rem 1.4rem;
+        border-radius: 999px;
+        background: var(--coral);
+        color: var(--ink);
+        font-weight: 700;
+        text-decoration: none;
+      }
+      footer {
+        background: var(--ink);
+        color: var(--on-dark-muted);
+        font-size: 0.85rem;
+        padding: 1.5rem 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap">
+        <a class="brand" href="../">Dental arts Bijelić &amp; Martić</a>
+        <a class="back" href="../">Početna</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="wrap">
+        <h1>Cjenik usluga</h1>
+        <p class="lead">
+          Cijene usluga koje pacijent plaća sam, u eurima (EUR). Usluge u okviru
+          obveznog zdravstvenog osiguranja (HZZO) nisu dio ovog cjenika.
+        </p>
+        <div class="notes">
+          <p>
+            <strong>Bazna cijena</strong> je cijena usluge na dan 10. rujna
+            2026. godine.
+          </p>
+          <p>
+            Konačni trošak liječenja dogovaramo nakon pregleda, prema
+            individualnom planu liječenja.
+          </p>
+        </div>
+
+        <!-- The table is built from the current CSV linked below
+             (#current-price-list), so the two can never disagree. -->
+        <table>
+          <caption>
+            Cjenik vrijedi od 20. 11. 2026.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Usluga</th>
+              <th scope="col" class="num">Cijena</th>
+              <th scope="col" class="num">Bazna cijena</th>
+            </tr>
+          </thead>
+          <tbody id="price-rows" aria-live="polite">
+            <tr>
+              <td colspan="3">Cjenik je dostupan u CSV obliku u nastavku.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!--
+          Updating the price list (Pravilnik o načinu objave cjenika
+          proizvoda, NN 132/2026):
+          1. Add the new CSV here, named
+             OIB_VRSTA_ADRESA_OZNAKA_USLUGE_BROJ_GGGGMMDD_SSMM.csv
+             (UTF-8, ";" separator, columns: Naziv usluge; Maloprodajna
+             cijena; Poseban oblik prodaje; Bazna cijena). Publish by 11:00
+             on the day prices change.
+          2. Point #current-price-list at the new file and update the
+             "vrijedi od" caption above, the "objavljen ... u ..." date and
+             time next to the link, and <lastmod> for /cjenik/ in
+             sitemap.xml.
+          3. Move the old file's link to the archive list; keep the file for
+             at least 15 days after it was replaced, then delete it.
+        -->
+        <section class="files" aria-labelledby="files-heading">
+          <h2 id="files-heading">Cjenik u strojno čitljivom obliku</h2>
+          <p>
+            <a
+              id="current-price-list"
+              href="72847756040_ZDRAVSTVENA_USTANOVA_HORVACANSKA47_ZAGREB_001_USLUGE_0001_20261120_0744.csv"
+              download
+              >Preuzmite važeći cjenik (CSV)</a
+            >, objavljen 20. 11. 2026. u 07:44.
+          </p>
+          <p>Prethodni cjenici dostupni su 15 dana od zamjene:</p>
+          <ul id="archive">
+            <li>nema prethodnih cjenika</li>
+          </ul>
+        </section>
+
+        <a class="call" href="tel:+38513668935">Nazovite za termin</a>
+      </div>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        Dental arts Bijelić &amp; Martić · Horvaćanska cesta 47, 10000 Zagreb
+      </div>
+    </footer>
+
+    <script>
+      ;(async () => {
+        const link = document.getElementById('current-price-list')
+        const body = document.getElementById('price-rows')
+        const eur = new Intl.NumberFormat('hr-HR', {
+          style: 'currency',
+          currency: 'EUR',
+        })
+        const money = v => {
+          const n = Number(String(v).replace(',', '.'))
+          return Number.isFinite(n) ? eur.format(n) : v
+        }
+        // Display only: tidy spacing inside brackets; the CSV stays as issued.
+        const tidy = s =>
+          s
+            .replace(/\s+/g, ' ')
+            .replace(/\(\s+/g, '(')
+            .replace(/\s+\)/g, ')')
+            .trim()
+        try {
+          const res = await fetch(link.href, {cache: 'no-cache'})
+          if (!res.ok) throw new Error(res.status)
+          const [header, ...lines] = (await res.text())
+            .replace(/^\uFEFF/, '')
+            .split(/\r?\n/)
+            .filter(line => line.trim())
+          // Values contain no quotes or semicolons; reject anything that does
+          // not look like this price list rather than show wrong prices.
+          if (!header || !header.startsWith('Naziv usluge;')) throw new Error()
+          const rows = lines.map(line => line.split(';'))
+          const isPrice = v => /^\d+([.,]\d+)?$/.test((v || '').trim())
+          if (
+            !rows.length ||
+            rows.some(r => r.length !== 4 || !isPrice(r[1]) || !isPrice(r[3]))
+          )
+            throw new Error()
+          body.replaceChildren(
+            ...rows.map(([name, price, sale, base]) => {
+              const tr = document.createElement('tr')
+              const td = (text, cls) => {
+                const cell = document.createElement('td')
+                cell.textContent = text
+                if (cls) cell.className = cls
+                tr.append(cell)
+                return cell
+              }
+              const nameCell = td(tidy(name))
+              if (sale && sale.trim().toUpperCase() !== 'NE') {
+                const note = document.createElement('span')
+                note.className = 'sale'
+                note.textContent = 'Poseban oblik prodaje: ' + sale.trim()
+                nameCell.append(note)
+              }
+              td(money(price), 'num')
+              td(money(base), 'num')
+              return tr
+            }),
+          )
+        } catch {
+          const tr = document.createElement('tr')
+          const cell = document.createElement('td')
+          cell.colSpan = 3
+          cell.textContent =
+            'Cjenik se nije mogao učitati. Preuzmite ga u CSV obliku u nastavku.'
+          tr.append(cell)
+          body.replaceChildren(tr)
+        }
+      })()
+    </script>
+  </body>
+</html>

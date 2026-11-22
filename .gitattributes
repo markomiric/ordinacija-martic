@@ -1,0 +1,2 @@
+# Price lists are published byte-for-byte as exported (CRLF line endings).
+cjenik/*.csv -text diff whitespace=cr-at-eol

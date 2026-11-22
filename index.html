@@ -1179,6 +1179,20 @@
       }
 
       /* ---------- Services (teal band: .surface-brand) ---------- */
+      /* Link to the price list page (Pravilnik NN 132/2026 cjenik). */
+      .services-price-link {
+        margin-top: 2rem;
+      }
+      .services-price-link a {
+        color: var(--on-dark);
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+      .services-price-link a:hover {
+        color: var(--on-dark);
+        text-decoration-thickness: 2px;
+      }
       .service-card {
         padding: 2rem 1.75rem;
         border-radius: var(--r);
@@ -2029,6 +2043,15 @@
         font-size: var(--fs-xs);
         color: var(--on-dark-muted);
       }
+      .footer-link {
+        font-size: var(--fs-xs);
+        color: var(--on-dark-muted);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .footer-link:hover {
+        color: var(--on-dark);
+      }
 
       /* ---------- A11y helpers ---------- */
       .skip-link {
@@ -2749,6 +2772,9 @@
               </div>
             </div>
           </div>
+          <p class="services-price-link">
+            <a href="cjenik/">Pogledajte cjenik usluga</a>
+          </p>
         </div>
       </section>
 
@@ -3693,6 +3719,7 @@
             >&copy; <span id="footerYear">2026</span>. Sva prava
             pridržana.</span
           >
+          <a class="footer-link" href="cjenik/">Cjenik usluga</a>
         </div>
       </div>
     </footer>
