@@ -176,6 +176,15 @@
         white-space: nowrap;
         font-variant-numeric: tabular-nums;
       }
+      /* Narrow phones (320px): headers and long words wrap so the table
+         never pushes the page sideways. Prices stay on one line. */
+      th.num {
+        white-space: normal;
+      }
+      td:first-child {
+        hyphens: auto;
+        overflow-wrap: anywhere;
+      }
       td:nth-child(2) {
         color: var(--ink);
         font-weight: 600;
@@ -330,7 +339,9 @@
             .filter(line => line.trim())
           // Values contain no quotes or semicolons; reject anything that does
           // not look like this price list rather than show wrong prices.
-          if (!header || !header.startsWith('Naziv usluge;')) throw new Error()
+          const expected =
+            'Naziv usluge;Maloprodajna cijena;Poseban oblik prodaje;Bazna cijena'
+          if (header?.trim() !== expected) throw new Error()
           const rows = lines.map(line => line.split(';'))
           const isPrice = v => /^\d+([.,]\d+)?$/.test((v || '').trim())
           if (

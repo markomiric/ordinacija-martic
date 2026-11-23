@@ -2298,18 +2298,18 @@
         // Booking shortcuts (phone bar, floating Call, header CTA) appear
         // once the hero buttons have scrolled away. 'cta-managed' lets the
         // CSS hide them only when this script runs.
+        // Measured on every scroll rather than observed: an anchor jump from
+        // below the buttons to above them never crosses an observer threshold.
         const heroButtons = document.querySelector('.hero .buttons')
         document.documentElement.classList.add('cta-managed')
-        if (heroButtons && 'IntersectionObserver' in window) {
-          new IntersectionObserver(([entry]) => {
-            document.documentElement.classList.toggle(
-              'has-action-bar',
-              !entry.isIntersecting && entry.boundingClientRect.top < 0,
-            )
-          }).observe(heroButtons)
-        } else {
-          document.documentElement.classList.add('has-action-bar')
-        }
+        const updateActionBar = () =>
+          document.documentElement.classList.toggle(
+            'has-action-bar',
+            !heroButtons || heroButtons.getBoundingClientRect().bottom < 0,
+          )
+        window.addEventListener('scroll', updateActionBar, {passive: true})
+        window.addEventListener('resize', updateActionBar)
+        updateActionBar()
 
         // Floating Call button and phone bar step aside while the contact
         // section's own Call/Email/Directions buttons are on screen.
