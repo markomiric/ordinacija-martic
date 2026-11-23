@@ -2047,31 +2047,6 @@
       .footer .container {
         max-width: var(--maxw);
       }
-      /* One row that wraps only when the line really doesn't fit (narrow
-         phones); left-aligned so the bottom-right stays clear for the
-         floating Call button. */
-      .footer-bar {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: baseline;
-        gap: 0.35rem 1.25rem;
-      }
-      .footer-brand {
-        font-family: var(--font-display);
-        font-size: var(--fs-lg);
-        font-weight: 700;
-        color: var(--on-dark);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      .footer-brand .brand-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--coral);
-        flex: none;
-      }
       .footer-meta {
         font-size: var(--fs-xs);
         color: var(--on-dark-muted);
@@ -2079,11 +2054,13 @@
       .footer-link {
         font-size: var(--fs-xs);
         color: var(--on-dark-muted);
-        text-decoration: underline;
+        text-decoration: none;
         text-underline-offset: 3px;
       }
-      .footer-link:hover {
+      .footer-link:hover,
+      .footer-link:focus-visible {
         color: var(--on-dark);
+        text-decoration: underline;
       }
 
       /* ---------- A11y helpers ---------- */
@@ -3746,17 +3723,11 @@
 
     <footer class="footer">
       <div class="container">
-        <div class="footer-bar">
-          <span class="footer-brand"
-            ><span class="brand-dot" aria-hidden="true"></span> Dental arts
-            Bijelić &amp; Martić</span
-          >
-          <span class="footer-meta"
-            >&copy; <span id="footerYear">2026</span>. Sva prava
-            pridržana.</span
-          >
+        <p class="footer-meta">
+          &copy; <span id="footerYear">2026</span>. Dental arts Bijelić &amp;
+          Martić <span aria-hidden="true">·</span>
           <a class="footer-link" href="cjenik/">Cjenik usluga</a>
-        </div>
+        </p>
       </div>
     </footer>
   </body>
